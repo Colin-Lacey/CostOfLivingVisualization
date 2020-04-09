@@ -87,8 +87,10 @@ function zoomed() {
   mapGroup.selectAll('path')
     .attr('transform', d3.event.transform);
   
+  console.log(d3.event.transform.k);
   mapSvg.selectAll(".city-circle")
-    .attr('transform', d3.event.transform);
+    .attr('transform', d3.event.transform)
+    .attr('r', 2/(Math.sqrt(d3.event.transform.k)));
 }
 
 function refreshPlottedCities(){
@@ -106,7 +108,7 @@ function refreshPlottedCities(){
     .on("click", onClickCity)
     .on("mouseover", onMouseOverCity)
     .on("mouseout", onMouseOutOfCity)
-    .attr("r", 1.5)
+    .attr("r", 2)
     .merge(cityUpdateSelection)
     .attr("fill", d => colorScale(d[selectedIndex]))
     .attr("cx", function(d){
