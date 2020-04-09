@@ -42,7 +42,7 @@ function addCoordinatesToCostOfLivingData(cost_of_living, city_coordinates){
 
 function setupPageAndMap(world_topoJSON_data){
   mapHeight = 400;
-  mapWidth = 800;
+  mapWidth = 950;
   
   // create projection using Mercator.
   // Converts a lattitude and longitude into a screen coordinate
@@ -153,67 +153,6 @@ function computeColorScale(){
     .range(['#762a83','white', '#1b7837']);
 }
 
-function makeColorLegend(){
-  // legend tutorial:
-  // https://bl.ocks.org/Ro4052/caaf60c1e9afcd8ece95034ea91e1eaa
-  $("#mapColorLegend").empty();
-  const container = d3.select("#mapColorLegend");
-
-    const domain = colorScale.domain();
-    const width = 50;
-    const height = 150;
-    
-    const paddedDomain = fc.extentLinear()
-  		.pad([0.1, 0.1])
-  		.padUnit("percent")(domain);
-		const [min, max] = paddedDomain;
-		const expandedDomain = d3.range(min, max, (max - min) / height);
-    
-    const xScale = d3
-    	.scaleBand()
-    	.domain([0, 1])
-    	.range([0, width]);
-    
-    const yScale = d3
-    	.scaleLinear()
-    	.domain(paddedDomain)
-    	.range([height, 0]);
-    
-    const svgBar = fc
-      .autoBandwidth(fc.seriesSvgBar())
-      .xScale(xScale)
-      .yScale(yScale)
-      .crossValue(0)
-      .baseValue((_, i) => (i > 0 ? expandedDomain[i - 1] : 0))
-      .mainValue(d => d)
-      .decorate(selection => {
-        selection.selectAll("path").style("fill", d => colorScale(d));
-      });
-    
-    const axisLabel = fc
-      .axisRight(yScale)
-      .tickValues([...domain, (domain[1] + domain[0]) / 2])
-      .tickSizeOuter(0);
-    
-    const legendSvg = container.append("svg")
-    	.attr("height", height)
-    	.attr("width", width);
-    
-    const legendBar = legendSvg
-    	.append("g")
-    	.datum(expandedDomain)
-    	.call(svgBar);
-    
-    const barWidth = Math.abs(legendBar.node().getBoundingClientRect().x);
-    legendSvg.append("g")
-    	.attr("transform", `translate(${barWidth})`)
-      .datum(expandedDomain)
-      .call(axisLabel)
-      .select(".domain")
-      .attr("visibility", "hidden");
-    
-    container.style("margin", "1em");
-}
 
 function onMouseOverCity(d){
   d3.select(this).classed("mouseover", true);
