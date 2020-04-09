@@ -1,14 +1,7 @@
 // GLOBAL DECLARATIONS
-let svg;
-let mapGroup;
-let margin;
-let height;
-let width;
-let costOfLivingData;
-let projection;
-let path;
 let selectedIndex;
 let colorScale;
+let costOfLivingData;
 
 // read in data
 Promise.all([
@@ -19,7 +12,7 @@ Promise.all([
 
 function initialize(data){
   
-  prepareData(data[1], data[2]);
+  addCoordinatesToCostOfLivingData(data[1], data[2]);
   setupPageAndMap(data[0]);
 
   selectedIndex = $('#indexSelector').val();
@@ -32,7 +25,7 @@ function initialize(data){
   refreshPlottedCities();
 }
 
-function prepareData(cost_of_living, city_coordinates){
+function addCoordinatesToCostOfLivingData(cost_of_living, city_coordinates){
   costOfLivingData = cost_of_living;
 
   // add coordinates to cost of living data
@@ -42,59 +35,59 @@ function prepareData(cost_of_living, city_coordinates){
       cityCostData.lat = cityCords.lat; cityCostData.lng = cityCords.lng;
     }
     else {
-      console.log(cityCostData.City, cityCostData.Country);
+      console.log(`Didn't find coordinates for: ${cityCostData.City}, ${cityCostData.Country}`);
     }
   });
 }
 
 function setupPageAndMap(world_topoJSON_data){
-  height = 400;
-  width = 800;
+  mapHeight = 400;
+  mapWidth = 800;
   
   // create projection using Mercator.
   // Converts a lattitude and longitude into a screen coordinate
   // according to the specified projection type
-  projection = d3.geoMercator()
-    .translate([width/2, height/2])
-    .scale((width - 1) / 2 / Math.PI);
+  mapProjection = d3.geoMercator()
+    .translate([mapWidth/2, mapHeight/2])
+    .scale((mapWidth - 1) / 2 / Math.PI);
 
   // create a path generator to translate from topoJSON geometry to SVG paths
-  path = d3.geoPath()
-  .projection(projection);
+  mapPath = d3.geoPath()
+  .projection(mapProjection);
 
   const zoom = d3.zoom()
   .scaleExtent([1, 8])
   .on('zoom', zoomed);
 
-  svg = d3.select( "svg" )
-    .attr( "width", width)
-    .attr( "height", height);
+  mapSvg = d3.select( "svg" )
+    .attr( "width", mapWidth)
+    .attr( "height", mapHeight);
   
-  mapGroup = svg.append("g");
+  mapGroup = mapSvg.append("g");
 
-  svg.call(zoom);
+  mapSvg.call(zoom);
 
   mapGroup.append('path')
     .datum({ type: 'Sphere' })
     .attr('class', 'sphere')
-    .attr('d', path);
+    .attr('d', mapPath);
 
   mapGroup.append('path')
     .datum(topojson.merge(world_topoJSON_data, world_topoJSON_data.objects.countries.geometries))
     .attr('class', 'land')
-    .attr('d', path);
+    .attr('d', mapPath);
 
   mapGroup.append('path')
     .datum(topojson.mesh(world_topoJSON_data, world_topoJSON_data.objects.countries, (a, b) => a !== b))
     .attr('class', 'boundary')
-    .attr('d', path);
+    .attr('d', mapPath);
 }
 
 function zoomed() {
   mapGroup.selectAll('path')
     .attr('transform', d3.event.transform);
   
-  svg.selectAll(".city-circle")
+  mapSvg.selectAll(".city-circle")
     .attr('transform', d3.event.transform);
 }
 
@@ -103,7 +96,7 @@ function refreshPlottedCities(){
   computeColorScale();
   makeColorLegend();
 
-  let cityUpdateSelection = svg.selectAll(".city-circle").data(costOfLivingData);
+  let cityUpdateSelection = mapSvg.selectAll(".city-circle").data(costOfLivingData);
 
   let cityEnterSelection = cityUpdateSelection.enter();
 
@@ -117,11 +110,11 @@ function refreshPlottedCities(){
     .merge(cityUpdateSelection)
     .attr("fill", d => colorScale(d[selectedIndex]))
     .attr("cx", function(d){
-      let coords = projection([d.lng, d.lat]);
+      let coords = mapProjection([d.lng, d.lat]);
       return coords[0];
     })
     .attr("cy", function(d){
-      let coords = projection([d.lng, d.lat]);
+      let coords = mapProjection([d.lng, d.lat]);
       return coords[1];
     });
 
