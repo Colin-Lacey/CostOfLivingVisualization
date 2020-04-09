@@ -15,9 +15,9 @@ function initialize(data){
   addCoordinatesToCostOfLivingData(data[1], data[2]);
   setupPageAndMap(data[0]);
 
-  selectedIndex = $('#indexSelector').val();
+  selectedIndex = $('#mapIndexSelector').val();
 
-  $('#indexSelector').on('change', function(){
+  $('#mapIndexSelector').on('change', function(){
     selectedIndex = $(this).children("option:selected").val();
     refreshPlottedCities();
   });
@@ -156,8 +156,8 @@ function computeColorScale(){
 function makeColorLegend(){
   // legend tutorial:
   // https://bl.ocks.org/Ro4052/caaf60c1e9afcd8ece95034ea91e1eaa
-  $("#legend").empty();
-  const container = d3.select("#legend");
+  $("#mapColorLegend").empty();
+  const container = d3.select("#mapColorLegend");
 
     const domain = colorScale.domain();
     const width = 50;
