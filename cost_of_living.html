@@ -13,7 +13,15 @@
         <p>Filters go here</p>
       </div>
       <div id="mapContainer">
-        <p>map goes here</p>
+        <select id="indexSelector" class="select-css">
+          <option value="Cost of Living Index">Cost of Living Index</option>
+          <option value="Rent Index">Rent Index</option>
+          <option value="Cost of Living Plus Rent Index">Cost of Living Plus Rent Index</option>
+          <option value="Groceries Index">Groceries Index</option>
+          <option value="Restaurant Price Index">Restaurant Price Index</option>
+          <option value="Local Purchasing Power Index">Local Purchasing Power Index</option>
+        </select>
+        <svg id="map"></svg>
       </div>
     </div>
     <div class="container horizontal">
@@ -29,16 +37,8 @@
   <p>Variation: Color scale ranges from the minimum index (red) to the average index (white) to the maximum index (green)</p>
   <div style="display: flex; flex-direction: row;">
     <div id="legend"></div>
-    <svg id="map"></svg>
+    
   </div>
-  <select id="indexSelector">
-    <option value="Cost of Living Index">Cost of Living Index</option>
-    <option value="Rent Index">Rent Index</option>
-    <option value="Cost of Living Plus Rent Index">Cost of Living Plus Rent Index</option>
-    <option value="Groceries Index">Groceries Index</option>
-    <option value="Restaurant Price Index">Restaurant Price Index</option>
-    <option value="Local Purchasing Power Index">Local Purchasing Power Index</option>
-  </select>
   <h2>Hovered city:</h2>
   <div id="hoveredCity"></div>
   <h2>Selected Cities:</h2>

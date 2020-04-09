@@ -15,6 +15,8 @@
 	margin: 10px 10px;
 	display: inline-block;
 	border: solid 1px black;
+	background: hsla(202, 70%, 80%, 1);
+
 }
 
 #filterContainer{
@@ -25,6 +27,7 @@
 }
 
 #mapContainer{
+	position: relative;
 	width: 950px;
 	height: 400px;
 
@@ -52,6 +55,14 @@
 #map{
 	background: hsla(202, 70%, 80%, 1);
 	border: solid 1px black;
+}
+
+#indexSelector{
+	position: absolute;
+	margin: 0;
+	top: 10px;
+	left: 10px;
+	border-radius: 5px;
 }
 
 .sphere {
