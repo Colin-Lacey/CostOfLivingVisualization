@@ -54,7 +54,7 @@ function makeColorLegend(){
 	  
 	  const barWidth = Math.abs(legendBar.node().getBoundingClientRect().x);
 	  legendSvg.append("g")
-		  .attr("transform", `translate(${barWidth})`)
+		.attr("transform", `translate(10, 0)`)
 		.datum(expandedDomain)
 		.call(axisLabel)
 		.select(".domain")
