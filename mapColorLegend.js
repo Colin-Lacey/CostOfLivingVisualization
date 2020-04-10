@@ -35,7 +35,7 @@ function makeColorLegend(color_scale){
 		.baseValue((_, i) => (i > 0 ? expandedDomain[i - 1] : 0))
 		.mainValue(d => d)
 		.decorate(selection => {
-		  selection.selectAll("path").style("fill", d => colorScale(d));
+		  selection.selectAll("path").style("fill", d => color_scale(d));
 		});
 	  
 	  let axisLabel = fc
