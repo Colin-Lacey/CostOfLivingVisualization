@@ -1,7 +1,5 @@
 // GLOBAL DECLARATIONS
 let g_root = document.documentElement;
-g_root.style.setProperty('--selected-radius', "4");
-g_root.style.setProperty('--selected-border-width', "1");
 
 let g_costOfLivingData;
 

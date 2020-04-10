@@ -8,6 +8,10 @@ let selectedIndex;
 let mapColorScale;
 
 function initializeMap(world_topoJSON_data, city_coordinates){
+	// set some css variables
+	g_root.style.setProperty('--selected-radius', "4");
+	g_root.style.setProperty('--selected-border-width', "1");
+
 	addCoordinatesToCostOfLivingData(city_coordinates);
 	drawMap(world_topoJSON_data);
 
@@ -87,7 +91,7 @@ function drawMap(world_topoJSON_data){
 	  .attr('transform', d3.event.transform)
 	  .attr('r', 2/Math.sqrt(d3.event.transform.k));
 	
-	g_root.style.setProperty('--selected-radius', `${3/Math.sqrt(d3.event.transform.k)}`);
+	g_root.style.setProperty('--selected-radius', `${4/Math.sqrt(d3.event.transform.k)}`);
 	g_root.style.setProperty('--selected-border-width', `${1/Math.sqrt(d3.event.transform.k)}`);
   }
 
