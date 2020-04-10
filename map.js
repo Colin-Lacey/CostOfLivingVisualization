@@ -86,8 +86,8 @@ function zoomed() {
 		.attr('transform', d3.event.transform)
 		.attr('r', 2/Math.sqrt(d3.event.transform.k));
 	
-	g_root.style.setProperty('--selected-radius', `${4/Math.sqrt(d3.event.transform.k)}`);
-	g_root.style.setProperty('--selected-border-width', `${1/Math.sqrt(d3.event.transform.k)}`);
+	g_root.style.setProperty('--selected-radius', `${4/Math.sqrt(d3.event.transform.k)}px`);
+	g_root.style.setProperty('--selected-border-width', `${1/Math.sqrt(d3.event.transform.k)}px`);
 }
 
 function refreshPlottedCities(){

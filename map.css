@@ -1,6 +1,6 @@
 :root {
-	--selected-radius: 4;
-	--selected-border-width: 1;
+	--selected-radius: 4px;
+	--selected-border-width: 1px;
 }
 
 #map{
