@@ -51,7 +51,7 @@ function setupPageAndMap(world_topoJSON_data){
   // Converts a lattitude and longitude into a screen coordinate
   // according to the specified projection type
   mapProjection = d3.geoMercator()
-    .translate([mapWidth/2, mapHeight/2])
+    .translate([mapWidth/2, mapHeight/2+80])
     .scale((mapWidth - 1) / 2 / Math.PI);
 
   // create a path generator to translate from topoJSON geometry to SVG paths
