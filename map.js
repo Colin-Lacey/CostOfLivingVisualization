@@ -104,8 +104,8 @@ function drawMap(world_topoJSON_data){
 	  .append("circle")
 	  .attr("class", "city-circle")
 	  .on("click", onClickCity)
-	  .on("mouseover", onMouseOverCity)
-	  .on("mouseout", onMouseOutOfCity)
+	  .on("mouseover", onMouseOverCity_Map)
+	  .on("mouseout", onMouseOutOfCity_Map)
 	  .attr("r", 2)
 	  .merge(cityUpdateSelection)
 	  .attr("fill", d => mapColorScale(d[selectedIndex]))
@@ -154,14 +154,14 @@ function computeColorScale(){
   }
   
   
-  function onMouseOverCity(d){
+  function onMouseOverCity_Map(d){
 	d3.select(this).classed("mouseover", true);
-	addCityToElement(d, "#hoveredCity");
+	onMouseOverCity(d);
   }
   
-  function onMouseOutOfCity(d){
+  function onMouseOutOfCity_Map(d){
 	d3.select(this).classed("mouseover", false);
-	$("#hoveredCity").empty();
+	onMouseOutOfCity(d);
   }
   
   function onClickCity(d){

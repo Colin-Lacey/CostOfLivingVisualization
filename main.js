@@ -17,6 +17,16 @@ function initialize(data){
   initializeMap(data[0], data[2]);
 }
 
+function onMouseOverCity(cityData){
+  console.log(cityData);
+  addCityToElement(cityData, "#hoveredCity");
+}
+
+function onMouseOutOfCity(cityData){
+  console.log(cityData);
+  $("#hoveredCity").empty();
+}
+
 function getSelectedCities(){
 	return getSelectedCitiesOnMap();
 }
