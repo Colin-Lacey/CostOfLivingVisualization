@@ -5,16 +5,16 @@ function initializeScatterPlot(){
 	$.subscribe("citySelectionCleared", onCitySelectionCleared_ScatterPlot);
 }
 
-function onCitySelected_ScatterPlot(cityData){
+function onCitySelected_ScatterPlot(event, cityData){
 	console.log("Scatter plot: City selected:");
 	console.log(cityData);
 }
 
-function onCityDeselected_ScatterPlot(cityData){
+function onCityDeselected_ScatterPlot(event, cityData){
 	console.log("Scatter plot: City deselected:");
 	console.log(cityData);
 }
 
-function onCitySelectionCleared_ScatterPlot(){
+function onCitySelectionCleared_ScatterPlot(event){
 	console.log("Scatter plot: City selection cleared.");
 }
