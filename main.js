@@ -18,34 +18,26 @@ function initialize(data){
 }
 
 function onMouseOverCity(cityData){
+  console.log("Moused over:");
   console.log(cityData);
-  addCityToElement(cityData, "#hoveredCity");
 }
 
 function onMouseOutOfCity(cityData){
+  console.log("Moused out of:");
   console.log(cityData);
-  $("#hoveredCity").empty();
 }
 
 function onCitySelected(cityData){
-  addCityToElement(cityData, "#selectedCities");
+  console.log("Selected:");
+  console.log(cityData);
 }
 
 function onCityDeselected(cityData){
-  $(`#selectedCities > .p${cityData.City.replace(/\W/g,'')}`).remove();
+  console.log("Deselected:");
+  console.log(cityData);
 }
 
 function getSelectedCities(){
 	return getSelectedCitiesOnMap();
 }
-
-function addCityToElement(d, element){
-	$(element).append(`<p class="p${d.City.replace(/\W/g,'')}"><b>${d.City}</b> </br>
-								Cost of Living Index: ${d["Cost of Living Index"]},</br>
-								Rent Index: ${d["Rent Index"]},</br>
-								Cost of Living Plus Rent Index: ${d["Cost of Living Plus Rent Index"]},</br>
-								Groceries Index: ${d["Groceries Index"]},</br>
-								Restaurant Price Index: ${d["Restaurant Price Index"]},</br>
-								Local Purchasing Power Index: ${d["Local Purchasing Power Index"]}</p>`);
-  }
 
