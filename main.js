@@ -1,4 +1,8 @@
 // GLOBAL DECLARATIONS
+let root = document.documentElement;
+root.style.setProperty('--selected-radius', "4");
+root.style.setProperty('--selected-border-width', "1");
+
 let selectedIndex;
 let colorScale;
 let costOfLivingData;
@@ -11,7 +15,6 @@ Promise.all([
 ]).then(initialize);
 
 function initialize(data){
-  
   addCoordinatesToCostOfLivingData(data[1], data[2]);
   setupPageAndMap(data[0]);
 
@@ -87,10 +90,12 @@ function zoomed() {
   mapGroup.selectAll('path')
     .attr('transform', d3.event.transform);
   
-  console.log(d3.event.transform.k);
   mapSvg.selectAll(".city-circle")
     .attr('transform', d3.event.transform)
-    .attr('r', 2/(Math.sqrt(d3.event.transform.k)));
+    .attr('r', 2/Math.sqrt(d3.event.transform.k));
+  
+  root.style.setProperty('--selected-radius', `${3/Math.sqrt(d3.event.transform.k)}`);
+  root.style.setProperty('--selected-border-width', `${1/Math.sqrt(d3.event.transform.k)}`);
 }
 
 function refreshPlottedCities(){

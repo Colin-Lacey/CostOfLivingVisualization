@@ -1,0 +1,50 @@
+#map{
+	background: hsla(202, 70%, 80%, 1);
+	border: solid 1px black;
+}
+
+#mapIndexSelector{
+	position: absolute;
+	margin: 0;
+	top: 10px;
+	left: 10px;
+	border-radius: 5px;
+}
+
+#mapColorLegend{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
+
+.sphere {
+	fill:hsla(202, 70%, 80%, 1);
+}
+
+.land {
+	fill: hsla(74, 69%, 87%, 1);
+}
+
+.boundary {
+	fill: none;
+	stroke: hsla(57, 0%, 80%, 1);
+	stroke-linejoin: round;
+	stroke-linecap: round;
+	vector-effect: non-scaling-stroke;
+}
+
+select{
+	margin: 20px;
+}
+
+.mouseover.city-circle{
+	stroke: grey;
+	stroke-width: var(--selected-border-width);
+	r: var(--selected-radius);
+}
+
+.selected.city-circle{
+	stroke: black;
+	stroke-width: var(--selected-border-width);
+	r: var(--selected-radius);
+}

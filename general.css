@@ -1,0 +1,47 @@
+*{
+	font-family: Arial;
+	margin:0;
+	padding:0;
+	border:0;
+}
+
+.container{ display: flex; }
+.horizontal{ flex-direction: row; }
+.vertical{ flex-direction: column; }
+
+#outerContainer{
+	margin: 10px 10px;
+	display: inline-block;
+	border: solid 1px black;
+	background: hsla(202, 70%, 80%, 1);
+
+}
+
+#filterContainer{
+	width: 250px;
+	height: 400px;
+
+	border: solid 1px black;
+}
+
+#mapContainer{
+	position: relative;
+	width: 950px;
+	height: 400px;
+	border: solid 1px black;
+}
+
+#barContainer{
+	width: 400px;
+	height: 300px;
+
+	border: solid 1px black;
+}
+
+#scatterContainer{
+	width: 800px;
+	height: 300px;
+
+	border: solid 1px black;
+}
+
