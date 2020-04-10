@@ -8,9 +8,6 @@ let selectedIndex;
 let mapColorScale;
 
 function initializeMap(world_topoJSON_data, city_coordinates){
-	// set some css variables
-	g_root.style.setProperty('--selected-radius', "4");
-	g_root.style.setProperty('--selected-border-width', "1");
 
 	addCoordinatesToCostOfLivingData(city_coordinates);
 	drawMap(world_topoJSON_data);
