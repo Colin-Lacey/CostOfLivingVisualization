@@ -1,0 +1,49 @@
+*{
+	font-family: Arial;
+	margin:1px;
+	padding:0;
+	border:0;
+}
+
+.container{ display: flex; }
+.horizontal{ flex-direction: row; }
+.vertical{ flex-direction: column; }
+
+body{
+	background: hsla(202, 70%, 85%, 1);
+}
+
+#outerContainer{
+	margin: 10px 10px;
+	display: inline-block;
+}
+
+#filterContainer{
+	width: 250px;
+	height: 400px;
+	background: hsla(202, 70%, 80%, 1);
+	border-radius: 10px;
+}
+
+#mapContainer{
+	position: relative;
+	width: 950px;
+	height: 400px;
+	background: hsla(202, 70%, 80%, 1);
+	border-radius: 10px;
+}
+
+#barContainer{
+	width: 400px;
+	height: 300px;
+	background: hsla(202, 70%, 80%, 1);
+	border-radius: 10px;
+}
+
+#scatterContainer{
+	width: 800px;
+	height: 300px;
+	background: hsla(202, 70%, 80%, 1);
+	border-radius: 10px;
+}
+
