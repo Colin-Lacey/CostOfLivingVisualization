@@ -18,7 +18,7 @@ function initializeMap(world_topoJSON_data, city_coordinates){
 	selectedIndex = $('#mapIndexSelector').val();
 
 	$('#mapIndexSelector').on('change', changeIndexSelection);
-	$("clearSelectionButton").on("click", onClearSelection_Map);
+	$("#clearSelectionButton").on("click", onClearSelection_Map);
 
 	refreshPlottedCities();
 }
@@ -186,5 +186,6 @@ function changeIndexSelection(){
 }
 
 function onClearSelection_Map(){
-	
+	mapSvg.selectAll(".selected").classed("selected", false);
+	onClearSelection();
 }

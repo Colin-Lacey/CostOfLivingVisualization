@@ -35,6 +35,10 @@ function onCityDeselected(cityData){
 	console.log(cityData);
 }
 
+function onClearSelection(){
+	console.log("Selection cleared");
+}
+
 function getSelectedCities(){
 	return getSelectedCitiesOnMap();
 }
