@@ -5,3 +5,7 @@ let mapHeight;
 let mapWidth;
 let mapProjection;
 let mapPath;
+
+function initializeMap(){
+	
+}
