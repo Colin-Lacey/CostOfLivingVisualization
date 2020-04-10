@@ -101,7 +101,7 @@ function zoomed() {
 function refreshPlottedCities(){
 
   computeColorScale();
-  makeColorLegend();
+  makeColorLegend(colorScale);
 
   let cityUpdateSelection = mapSvg.selectAll(".city-circle").data(costOfLivingData);
 
