@@ -1,4 +1,3 @@
-// GLOBAL DECLARATIONS
 let mapSvg;
 let mapGroup;
 let mapHeight;
@@ -88,8 +87,8 @@ function drawMap(world_topoJSON_data){
 	  .attr('transform', d3.event.transform)
 	  .attr('r', 2/Math.sqrt(d3.event.transform.k));
 	
-	root.style.setProperty('--selected-radius', `${3/Math.sqrt(d3.event.transform.k)}`);
-	root.style.setProperty('--selected-border-width', `${1/Math.sqrt(d3.event.transform.k)}`);
+	g_root.style.setProperty('--selected-radius', `${3/Math.sqrt(d3.event.transform.k)}`);
+	g_root.style.setProperty('--selected-border-width', `${1/Math.sqrt(d3.event.transform.k)}`);
   }
 
   function refreshPlottedCities(){
@@ -185,10 +184,6 @@ function computeColorScale(){
 								Groceries Index: ${d["Groceries Index"]},</br>
 								Restaurant Price Index: ${d["Restaurant Price Index"]},</br>
 								Local Purchasing Power Index: ${d["Local Purchasing Power Index"]}</p>`);
-  }
-  
-  function getSelectedCities(){
-	return d3.selectAll(".city-markers.selected").data();
   }
   
   

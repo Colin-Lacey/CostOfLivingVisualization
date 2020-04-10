@@ -1,7 +1,7 @@
 // GLOBAL DECLARATIONS
-let root = document.documentElement;
-root.style.setProperty('--selected-radius', "4");
-root.style.setProperty('--selected-border-width', "1");
+let g_root = document.documentElement;
+g_root.style.setProperty('--selected-radius', "4");
+g_root.style.setProperty('--selected-border-width', "1");
 
 let g_costOfLivingData;
 
@@ -17,4 +17,7 @@ function initialize(data){
   initializeMap(data[0], data[2]);
 }
 
+function getSelectedCities(){
+	return d3.selectAll(".city-markers.selected").data();
+  }
 
