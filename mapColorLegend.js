@@ -8,7 +8,7 @@ function makeColorLegend(color_scale){
 	let mapColorLegendContainer = d3.select("#mapColorLegend");
 	
 	  let color_scale_domain = color_scale.domain();
-	  let mapLegendWidth = 50;
+	  let mapLegendWidth = 30;
 	  let mapLegendHeight = 150;
 	  
 	  let paddedDomain = fc.extentLinear()
@@ -39,22 +39,22 @@ function makeColorLegend(color_scale){
 	  });
 	  
 	  let axisLabel = fc
-	  .axisRight(yScale)
+	  .axisLeft(yScale)
 	  .tickValues([...color_scale_domain])
 	  .tickSizeOuter(0);
 	  
 	  let legendSvg = mapColorLegendContainer.append("svg")
 		.attr("height", mapLegendHeight)
-		.attr("width", mapLegendWidth);
+		.attr("width", 80);
 	  
 	  let legendBar = legendSvg
 		.append("g")
+		.attr("transform", `translate(70, 0)`)
 		.datum(expandedDomain)
 		.call(svgBar);
 	  
-	  let barWidth = Math.abs(legendBar.node().getBoundingClientRect().x);
 	  legendSvg.append("g")
-	  .attr("transform", `translate(5, 0)`)
+	  .attr("transform", `translate(65, 0)`)
 	  .datum(expandedDomain)
 	  .call(axisLabel)
 	  .select(".domain")
@@ -65,7 +65,7 @@ function makeColorLegend(color_scale){
 	  let label = ["min", "avg", "max"];
 	  ticks.each(function(d, i){
 		  let text = d3.select(this).text();
-		  d3.select(this).text(`${text} ${label[i]}`)
+		  d3.select(this).text(`${label[i]} ${text}`)
 	  });
 
 	}
