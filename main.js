@@ -13,33 +13,7 @@ Promise.all([
 function initialize(data){
 	g_costOfLivingData = data[1];
 	initializeMap(data[0], data[2]);
-}
-
-function onMouseOverCity(cityData){
-	console.log("Moused over:");
-	console.log(cityData);
-}
-
-function onMouseOutOfCity(cityData){
-	console.log("Moused out of:");
-	console.log(cityData);
-}
-
-function onCitySelected(cityData){
-	console.log("Selected:");
-	console.log(cityData);
-}
-
-function onCityDeselected(cityData){
-	console.log("Deselected:");
-	console.log(cityData);
-}
-
-function onClearSelection(){
-	console.log("Selection cleared");
-}
-
-function getSelectedCities(){
-	return getSelectedCitiesOnMap();
+	initializeBarChart();
+	initializeScatterPlot();
 }
 

@@ -153,23 +153,23 @@ function computeColorScale(){
 	
 function onMouseOverCity_Map(d){
 	d3.select(this).classed("mouseover", true);
-	onMouseOverCity(d);
+	$.publish("mouseOverCity", d);
 }
 
 function onMouseOutOfCity_Map(d){
 	d3.select(this).classed("mouseover", false);
-	onMouseOutOfCity(d);
+	$.publish("mouseOutOfCity", d);
 }
 
 function onClickCity(d){
 	let thisCity = d3.select(this);
 	if (thisCity.classed("selected")){
 		thisCity.classed("selected", false);
-		onCityDeselected(d);
+		$.publish("cityDeselected", d);
 	}
 	else{
 		thisCity.classed("selected", true);
-		onCitySelected(d);
+		$.publish("citySelected", d);
 	}				
 }
 
@@ -184,5 +184,5 @@ function changeIndexSelection(){
 
 function onClearSelection_Map(){
 	mapSvg.selectAll(".selected").classed("selected", false);
-	onClearSelection();
+	$.publish("citySelectionCleared");
 }
