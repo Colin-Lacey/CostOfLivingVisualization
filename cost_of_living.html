@@ -1,43 +1,43 @@
 <html>
 <head>
-  <script src="https://d3js.org/d3.v5.min.js"></script>
-  <script src="https://unpkg.com/d3fc@14.0.27/build/d3fc.js"></script>
-  <script src="//unpkg.com/topojson@3"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <link rel="stylesheet" href="general.css">
-  <link rel="stylesheet" href="map.css">
+	<script src="https://d3js.org/d3.v5.min.js"></script>
+	<script src="https://unpkg.com/d3fc@14.0.27/build/d3fc.js"></script>
+	<script src="//unpkg.com/topojson@3"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="general.css">
+	<link rel="stylesheet" href="map.css">
 </head>
 <body>
-  <div id="outerContainer">
-    <p>Cost of Living of Cities Around the World</p>
-    <div class="container horizontal">
-      <div id="filterContainer">
-        <p>Filters go here</p>
-      </div>
-      <div id="mapContainer">
-        <select id="mapIndexSelector" class="select-css">
-          <option value="Cost of Living Index">Cost of Living Index</option>
-          <option value="Rent Index">Rent Index</option>
-          <option value="Groceries Index">Groceries Index</option>
-          <option value="Restaurant Price Index">Restaurant Price Index</option>
-          <option value="Local Purchasing Power Index">Local Purchasing Power Index</option>
-        </select>
-        <button id="clearSelectionButton">Clear Selection</button>
-        <div id="mapColorLegend"></div>
-        <svg id="map"></svg>
-      </div>
-    </div>
-    <div class="container horizontal">
-      <div id="barContainer">
-        <p>bar chart goes here</p>
-      </div>
-      <div id="scatterContainer">
-        <p>scatter plot goes here</p>
-      </div>
-    </div>
-  </div>
-  <script src="main.js"></script>
-  <script src="map.js"></script>
-  <script src="mapColorLegend.js"></script>
+	<div id="outerContainer">
+		<p>Cost of Living of Cities Around the World</p>
+		<div class="container horizontal">
+			<div id="filterContainer">
+				<p>Filters go here</p>
+			</div>
+			<div id="mapContainer">
+				<select id="mapIndexSelector" class="select-css">
+					<option value="Cost of Living Index">Cost of Living Index</option>
+					<option value="Rent Index">Rent Index</option>
+					<option value="Groceries Index">Groceries Index</option>
+					<option value="Restaurant Price Index">Restaurant Price Index</option>
+					<option value="Local Purchasing Power Index">Local Purchasing Power Index</option>
+				</select>
+				<button id="clearSelectionButton">Clear Selection</button>
+				<div id="mapColorLegend"></div>
+				<svg id="map"></svg>
+			</div>
+		</div>
+		<div class="container horizontal">
+			<div id="barContainer">
+				<p>bar chart goes here</p>
+			</div>
+			<div id="scatterContainer">
+				<p>scatter plot goes here</p>
+			</div>
+		</div>
+	</div>
+	<script src="main.js"></script>
+	<script src="map.js"></script>
+	<script src="mapColorLegend.js"></script>
 </body>
 </html>
