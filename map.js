@@ -16,6 +16,8 @@ function initializeMap(world_topoJSON_data, city_coordinates){
 
 	$('#mapIndexSelector').on('change', changeIndexSelection);
 	$("#clearSelectionButton").on("click", onClearSelection_Map);
+	$.subscribe("citySelected", onCitySelected_Map);
+	$.subscribe("cityDeselected", onCityDeselected_Map);
 
 	refreshPlottedCities();
 }
@@ -100,7 +102,7 @@ function refreshPlottedCities(){
 
 	cityEnterSelection
 		.append("circle")
-		.attr("class", "city-circle")
+		.attr("class", (d) => `city-circle id${d.Rank}`) // use Rank as an id for the city
 		.on("click", onClickCity)
 		.on("mouseover", onMouseOverCity_Map)
 		.on("mouseout", onMouseOutOfCity_Map)
@@ -164,11 +166,9 @@ function onMouseOutOfCity_Map(d){
 function onClickCity(d){
 	let thisCity = d3.select(this);
 	if (thisCity.classed("selected")){
-		thisCity.classed("selected", false);
 		$.publish("cityDeselected", d);
 	}
 	else{
-		thisCity.classed("selected", true);
 		$.publish("citySelected", d);
 	}				
 }
@@ -185,4 +185,12 @@ function changeIndexSelection(){
 function onClearSelection_Map(){
 	mapSvg.selectAll(".selected").classed("selected", false);
 	$.publish("citySelectionCleared");
+}
+
+function onCitySelected_Map(event, cityData){
+	d3.select(`.id${cityData.Rank}`).classed("selected", true);
+}
+
+function onCityDeselected_Map(event, cityData){
+	d3.select(`.id${cityData.Rank}`).classed("selected", false);
 }
