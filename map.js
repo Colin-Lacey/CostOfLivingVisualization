@@ -186,4 +186,7 @@ function computeColorScale(){
 								Local Purchasing Power Index: ${d["Local Purchasing Power Index"]}</p>`);
   }
   
+  function getSelectedCitiesOnMap(){
+	return d3.selectAll(".selected").data();
+}
   

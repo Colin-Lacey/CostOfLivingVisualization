@@ -18,6 +18,6 @@ function initialize(data){
 }
 
 function getSelectedCities(){
-	return d3.selectAll(".city-markers.selected").data();
-  }
+	return getSelectedCitiesOnMap();
+}
 
