@@ -40,7 +40,7 @@ function makeColorLegend(color_scale){
 	  
 	  let axisLabel = fc
 		.axisRight(yScale)
-		.tickValues([...color_scale_domain, (color_scale_domain[1] + color_scale_domain[0]) / 2])
+		.tickValues([...color_scale_domain])
 		.tickSizeOuter(0);
 	  
 	  let legendSvg = mapColorLegendContainer.append("svg")
