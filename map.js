@@ -153,7 +153,6 @@ function computeColorScale(){
 	  .range(['#762a83','white', '#1b7837']);
   }
   
-  
   function onMouseOverCity_Map(d){
 	d3.select(this).classed("mouseover", true);
 	onMouseOverCity(d);
@@ -168,22 +167,12 @@ function computeColorScale(){
 	let thisCity = d3.select(this);
 	if (thisCity.classed("selected")){
 	  thisCity.classed("selected", false);
-	  $(`#selectedCities > .p${d.City.replace(/\W/g,'')}`).remove();
+	  onCityDeselected(d);
 	}
 	else{
 	  thisCity.classed("selected", true);
-	  addCityToElement(d, "#selectedCities");
+	  onCitySelected(d);
 	}        
-  }
-  
-  function addCityToElement(d, element){
-	$(element).append(`<p class="p${d.City.replace(/\W/g,'')}"><b>${d.City}</b> </br>
-								Cost of Living Index: ${d["Cost of Living Index"]},</br>
-								Rent Index: ${d["Rent Index"]},</br>
-								Cost of Living Plus Rent Index: ${d["Cost of Living Plus Rent Index"]},</br>
-								Groceries Index: ${d["Groceries Index"]},</br>
-								Restaurant Price Index: ${d["Restaurant Price Index"]},</br>
-								Local Purchasing Power Index: ${d["Local Purchasing Power Index"]}</p>`);
   }
   
   function getSelectedCitiesOnMap(){
