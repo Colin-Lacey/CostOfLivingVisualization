@@ -126,12 +126,22 @@ function refreshPlottedCities(){
 }
 
 function onFiltersUpdated(){
-	console.log(g_filterValues);
 	mapSvg.selectAll(".city-circle")
 		.attr("display", function(d, i){
-			costOfLivingIndex = parseFloat(d["Cost of Living Index"]);
-			if ((g_filterValues.cost_of_living.min <= costOfLivingIndex) && (costOfLivingIndex <= g_filterValues.cost_of_living.max))
+			cost_of_living = parseFloat(d["Cost of Living Index"]);
+			rent = parseFloat(d["Rent Index"]);
+			groceries = parseFloat(d["Groceries Index"]);
+			restaurant_price = parseFloat(d["Restaurant Price Index"]);
+			local_purchasing_power = parseFloat(d["Local Purchasing Power Index"]);
+			if (
+				(g_filterValues.cost_of_living.min <= cost_of_living) && (cost_of_living <= g_filterValues.cost_of_living.max) &&
+				(g_filterValues.rent.min <= rent) && (rent <= g_filterValues.rent.max) &&
+				(g_filterValues.groceries.min <= groceries) && (groceries <= g_filterValues.groceries.max) &&
+				(g_filterValues.restaurant_price.min <= restaurant_price) && (restaurant_price <= g_filterValues.restaurant_price.max) &&
+				(g_filterValues.local_purchasing_power.min <= local_purchasing_power) && (local_purchasing_power <= g_filterValues.local_purchasing_power.max) )
+			{
 				return "";
+			}
 			else
 				return "none";
 		});
