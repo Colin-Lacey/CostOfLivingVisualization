@@ -1,14 +1,14 @@
 
 function initializeFilters(){
 	let min = 0;
-	let max = 130;
+	let max = 140;
 	var sliderRange = d3
 		.sliderBottom()
 		.min(min)
 		.max(max)
 		.width(205)
-		.ticks(5)
-		.default([0, 130])
+		.ticks(7)
+		.default([min, max])
 		.fill('#2196f3')
 		.on('onchange', val => {
 			d3.select("#min-index").text(Math.trunc(val[0]));
@@ -26,8 +26,6 @@ function initializeFilters(){
 	gRange.call(sliderRange);
 
 	let sliders = d3.selectAll("#cost-of-living-filter-container .slider .parameter-value");
-	console.log(sliders);
-
 	let sliderId = ["min-index", "max-index"];
 	let sliderInitVal = [min, max];
 	sliders.each(function(d, i){
