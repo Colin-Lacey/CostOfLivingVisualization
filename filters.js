@@ -1,9 +1,13 @@
 
 function initializeFilters(){
-	$("#filterContainer").append("p").text("Filter Cost Of Living Index");
-	$("#filterContainer").append(`<div id="cost-of-living-filter-container"></div>`);
-
 	let filterVarName = "cost_of_living";
+	let filterNameFormal = "Cost Of Living Index";
+	let divId = "cost_of_living_filter_container";
+
+	let p = $("#filterContainer").append(
+		`<p>Filter ${filterNameFormal}</p>
+		<div id="${divId}"></div>
+	`);
 
 	var sliderRange = d3
 		.sliderBottom()
@@ -23,7 +27,7 @@ function initializeFilters(){
 		});
 
 	var gRange = d3
-		.select('#cost-of-living-filter-container')
+		.select(`#${divId}`)
 		.append('svg')
 		.attr('width', 240)
 		.attr('height', 100)
@@ -32,7 +36,7 @@ function initializeFilters(){
 
 	gRange.call(sliderRange);
 
-	let sliders = d3.selectAll("#cost-of-living-filter-container .slider .parameter-value");
+	let sliders = d3.selectAll(`#${divId} .slider .parameter-value`);
 	let sliderId = ["min-index", "max-index"];
 	let sliderInitVal = [g_filterValues[filterVarName].min, g_filterValues[filterVarName].max];
 	sliders.each(function(d, i){
