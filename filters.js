@@ -1,6 +1,8 @@
 
 function initializeFilters(){
 	appendFilter("cost_of_living", "Cost Of Living Index", "cost_of_living_filter_container");
+	appendFilter("rent", "Rent Index", "rent_filter_container");
+	appendFilter("groceries", "Groceries Index", "groceries_filter_container");
 }
 
 function appendFilter(filterVarName, filterNameFormal, divId){
