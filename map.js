@@ -18,6 +18,7 @@ function initializeMap(world_topoJSON_data, city_coordinates){
 	$("#clearSelectionButton").on("click", onClearSelection_Map);
 	$.subscribe("citySelected", onCitySelected_Map);
 	$.subscribe("cityDeselected", onCityDeselected_Map);
+	$.subscribe("filtersUpdated", onFiltersUpdated);
 
 	refreshPlottedCities();
 }
@@ -38,14 +39,14 @@ function addCoordinatesToCostOfLivingData(city_coordinates){
 }
 
 function drawMap(world_topoJSON_data){
-	mapHeight = 400;
+	mapHeight = 500;
 	mapWidth = 950;
 	
 	// create projection using Mercator.
 	// Converts a lattitude and longitude into a screen coordinate
 	// according to the specified projection type
 	mapProjection = d3.geoMercator()
-		.translate([mapWidth/2, mapHeight/2+80])
+		.translate([mapWidth/2, mapHeight/2+100])
 		.scale((mapWidth - 1) / 2 / Math.PI);
 	
 	// create a path generator to translate from topoJSON geometry to SVG paths
@@ -120,6 +121,30 @@ function refreshPlottedCities(){
 
 		cityUpdateSelection.exit()
 		.remove();
+	
+	onFiltersUpdated(); // hide cities not matching filters
+}
+
+function onFiltersUpdated(){
+	mapSvg.selectAll(".city-circle")
+		.attr("display", function(d, i){
+			cost_of_living = parseFloat(d["Cost of Living Index"]);
+			rent = parseFloat(d["Rent Index"]);
+			groceries = parseFloat(d["Groceries Index"]);
+			restaurant_price = parseFloat(d["Restaurant Price Index"]);
+			local_purchasing_power = parseFloat(d["Local Purchasing Power Index"]);
+			if (
+				(g_filterValues.cost_of_living.min <= cost_of_living) && (cost_of_living <= g_filterValues.cost_of_living.max) &&
+				(g_filterValues.rent.min <= rent) && (rent <= g_filterValues.rent.max) &&
+				(g_filterValues.groceries.min <= groceries) && (groceries <= g_filterValues.groceries.max) &&
+				(g_filterValues.restaurant_price.min <= restaurant_price) && (restaurant_price <= g_filterValues.restaurant_price.max) &&
+				(g_filterValues.local_purchasing_power.min <= local_purchasing_power) && (local_purchasing_power <= g_filterValues.local_purchasing_power.max) )
+			{
+				return "";
+			}
+			else
+				return "none";
+		});
 }
 
 // HELPER FUNCTIONS
