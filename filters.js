@@ -1,9 +1,9 @@
 
 function initializeFilters(){
-	let filterVarName = "cost_of_living";
-	let filterNameFormal = "Cost Of Living Index";
-	let divId = "cost_of_living_filter_container";
+	appendFilter("cost_of_living", "Cost Of Living Index", "cost_of_living_filter_container");
+}
 
+function appendFilter(filterVarName, filterNameFormal, divId){
 	let p = $("#filterContainer").append(
 		`<p>Filter ${filterNameFormal}</p>
 		<div id="${divId}"></div>
