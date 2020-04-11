@@ -4,7 +4,11 @@ let g_root = document.documentElement;
 let g_costOfLivingData;
 
 let g_filterValues = { 
-	cost_of_living: {min: 0, max: 140}
+	cost_of_living: {min: 0, max: 140},
+	rent: {min: 0, max: 140},
+	groceries: {min: 0, max: 140},
+	restaurant: {min: 0, max: 140},
+	local_purchasing_power: {min: 0, max: 140}
 }
 
 // read in data
