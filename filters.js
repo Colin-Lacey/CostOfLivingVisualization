@@ -1,10 +1,11 @@
 
 function initializeFilters(){
-	var data = [0, 130];
+	let min = 0;
+	let max = 130;
 	var sliderRange = d3
 		.sliderBottom()
-		.min(d3.min(data))
-		.max(d3.max(data))
+		.min(min)
+		.max(max)
 		.width(205)
 		.ticks(5)
 		.default([0, 130])
@@ -28,7 +29,7 @@ function initializeFilters(){
 	console.log(sliders);
 
 	let sliderId = ["min-index", "max-index"];
-	let sliderInitVal = ["0", "130"];
+	let sliderInitVal = [min, max];
 	sliders.each(function(d, i){
 		d3.select(this)
 			.append("text")
