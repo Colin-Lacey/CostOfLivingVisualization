@@ -11,8 +11,7 @@ function initializeFilters(){
 		.on('onchange', val => {
 			d3.select("#min-index").text(Math.trunc(val[0]));
 			d3.select("#max-index").text(Math.trunc(val[1]));
-		})
-		.on('end', val => {
+
 			g_filterValues.cost_of_living.min = Math.trunc(val[0]);
 			g_filterValues.cost_of_living.max = Math.trunc(val[1]);
 			$.publish("filtersUpdated");
