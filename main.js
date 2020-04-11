@@ -13,6 +13,7 @@ Promise.all([
 function initialize(data){
 	g_costOfLivingData = data[1];
 	initializeMap(data[0], data[2]);
+	initializeFilters();
 	initializeBarChart();
 	initializeScatterPlot();
 }
