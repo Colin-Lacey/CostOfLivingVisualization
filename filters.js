@@ -15,7 +15,7 @@ function initializeFilters(){
 		});
 
 	var gRange = d3
-		.select('#slider-container')
+		.select('#cost-of-living-filter-container')
 		.append('svg')
 		.attr('width', 240)
 		.attr('height', 100)
@@ -24,7 +24,7 @@ function initializeFilters(){
 
 	gRange.call(sliderRange);
 
-	let sliders = d3.selectAll("#slider-container .slider .parameter-value");
+	let sliders = d3.selectAll("#cost-of-living-filter-container .slider .parameter-value");
 	console.log(sliders);
 
 	let sliderId = ["min-index", "max-index"];
