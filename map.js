@@ -127,7 +127,7 @@ function refreshPlottedCities(){
 }
 
 function onFiltersUpdated(){
-	console.log("hiii");
+	console.log(g_filterValues);
 }
 
 // HELPER FUNCTIONS
