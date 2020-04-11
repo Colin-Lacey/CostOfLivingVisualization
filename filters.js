@@ -1,5 +1,8 @@
 
 function initializeFilters(){
+	$("#filterContainer").append("p").text("Filter Cost Of Living Index");
+	$("#filterContainer").append(`<div id="cost-of-living-filter-container"></div>`);
+
 	var sliderRange = d3
 		.sliderBottom()
 		.min(g_filterValues.cost_of_living.min)
