@@ -3,6 +3,14 @@ let g_root = document.documentElement;
 
 let g_costOfLivingData;
 
+let g_filterValues = { 
+	cost_of_living: {min: 0, max: 140},
+	rent: {min: 0, max: 140},
+	groceries: {min: 0, max: 140},
+	restaurant_price: {min: 0, max: 140},
+	local_purchasing_power: {min: 0, max: 140}
+}
+
 // read in data
 Promise.all([
 	d3.json("//unpkg.com/world-atlas@1/world/110m.json"),
@@ -13,6 +21,7 @@ Promise.all([
 function initialize(data){
 	g_costOfLivingData = data[1];
 	initializeMap(data[0], data[2]);
+	initializeFilters();
 	initializeBarChart();
 	initializeScatterPlot();
 }
