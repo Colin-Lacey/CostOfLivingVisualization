@@ -109,7 +109,6 @@ function refreshPlottedCities(){
 		.on("mouseout", onMouseOutOfCity_Map)
 		.attr("r", 2)
 		.merge(cityUpdateSelection)
-		.attr("display", d => {if (d.Rank == 206) return "none";})
 		.attr("fill", d => mapColorScale(d[selectedIndex]))
 		.attr("cx", function(d){
 			let coords = mapProjection([d.lng, d.lat]);
@@ -128,6 +127,14 @@ function refreshPlottedCities(){
 
 function onFiltersUpdated(){
 	console.log(g_filterValues);
+	mapSvg.selectAll(".city-circle")
+		.attr("display", function(d, i){
+			costOfLivingIndex = parseFloat(d["Cost of Living Index"]);
+			if ((g_filterValues.cost_of_living.min <= costOfLivingIndex) && (costOfLivingIndex <= g_filterValues.cost_of_living.max))
+				return "";
+			else
+				return "none";
+		});
 }
 
 // HELPER FUNCTIONS
