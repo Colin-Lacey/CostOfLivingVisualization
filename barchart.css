@@ -1,0 +1,14 @@
+
+#barchart {
+	width:400;
+	height:280;
+}
+
+#cityName {
+	margin-left:10;
+}
+
+.axis--x path {
+	display: none;
+}
+
