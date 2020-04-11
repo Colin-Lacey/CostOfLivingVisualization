@@ -10,7 +10,7 @@
 .vertical{ flex-direction: column; }
 
 body{
-	background: white;
+	background: hsla(202, 70%, 85%, 1);
 }
 
 #outerContainer{
@@ -46,17 +46,3 @@ body{
 	background: hsla(202, 70%, 80%, 1);
 	border-radius: 10px;
 }
-
-#barchart {
-	width:400;
-	height:280;
-}
-
-#cityName {
-	margin-left:10;
-}
-
-.axis--x path {
-	display: none;
-}
-
