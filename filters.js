@@ -10,11 +10,12 @@ function initializeFilters(){
 		.default([0, 130])
 		.fill('#2196f3')
 		.on('onchange', val => {
-			d3.select('#value-range').text(val.map(d3.format(',')).join('-'));
-	});
+			d3.select("#min-index").text(Math.trunc(val[0]));
+			d3.select("#max-index").text(Math.trunc(val[1]));
+		});
 
 	var gRange = d3
-		.select('#slider-range')
+		.select('#slider-container')
 		.append('svg')
 		.attr('width', 240)
 		.attr('height', 100)
@@ -23,9 +24,16 @@ function initializeFilters(){
 
 	gRange.call(sliderRange);
 
-	d3.select('#value-range').text(
-		sliderRange.value()
-		.map(d3.format(","))
-		.join('-')
-	);
+	let sliders = d3.selectAll("#slider-container .slider .parameter-value");
+	console.log(sliders);
+
+	let sliderId = ["min-index", "max-index"];
+	let sliderInitVal = ["0", "130"];
+	sliders.each(function(d, i){
+		d3.select(this)
+			.append("text")
+			.attr("id", ()=> sliderId[i])
+			.attr('transform', 'translate(0,-10)')
+			.text(() => sliderInitVal[i]);
+	});
 }
