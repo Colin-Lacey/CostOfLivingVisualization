@@ -18,8 +18,8 @@ function initializeFilters(){
 		.default([g_filterValues[filterVarName].min, g_filterValues[filterVarName].max])
 		.fill('#2196f3')
 		.on('onchange', val => {
-			d3.select("#min-index").text(Math.trunc(val[0]));
-			d3.select("#max-index").text(Math.trunc(val[1]));
+			d3.select(`#${filterVarName}-min-index`).text(Math.trunc(val[0]));
+			d3.select(`#${filterVarName}-max-index`).text(Math.trunc(val[1]));
 
 			g_filterValues[filterVarName].min = Math.trunc(val[0]);
 			g_filterValues[filterVarName].max = Math.trunc(val[1]);
@@ -37,7 +37,7 @@ function initializeFilters(){
 	gRange.call(sliderRange);
 
 	let sliders = d3.selectAll(`#${divId} .slider .parameter-value`);
-	let sliderId = ["min-index", "max-index"];
+	let sliderId = [`${filterVarName}-min-index`, `${filterVarName}-max-index`];
 	let sliderInitVal = [g_filterValues[filterVarName].min, g_filterValues[filterVarName].max];
 	sliders.each(function(d, i){
 		d3.select(this)
