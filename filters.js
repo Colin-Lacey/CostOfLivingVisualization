@@ -1,18 +1,19 @@
 
 function initializeFilters(){
-	let min = 0;
-	let max = 140;
 	var sliderRange = d3
 		.sliderBottom()
-		.min(min)
-		.max(max)
+		.min(g_filterValues.cost_of_living.min)
+		.max(g_filterValues.cost_of_living.max)
 		.width(205)
 		.ticks(7)
-		.default([min, max])
+		.default([g_filterValues.cost_of_living.min, g_filterValues.cost_of_living.max])
 		.fill('#2196f3')
 		.on('onchange', val => {
 			d3.select("#min-index").text(Math.trunc(val[0]));
 			d3.select("#max-index").text(Math.trunc(val[1]));
+		})
+		.on('end', val => {
+			$.publish("filtersUpdated");
 		});
 
 	var gRange = d3
@@ -27,7 +28,7 @@ function initializeFilters(){
 
 	let sliders = d3.selectAll("#cost-of-living-filter-container .slider .parameter-value");
 	let sliderId = ["min-index", "max-index"];
-	let sliderInitVal = [min, max];
+	let sliderInitVal = [g_filterValues.cost_of_living.min, g_filterValues.cost_of_living.max];
 	sliders.each(function(d, i){
 		d3.select(this)
 			.append("text")

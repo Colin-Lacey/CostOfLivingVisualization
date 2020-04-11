@@ -3,6 +3,10 @@ let g_root = document.documentElement;
 
 let g_costOfLivingData;
 
+let g_filterValues = { 
+	cost_of_living: {min: 0, max: 140}
+}
+
 // read in data
 Promise.all([
 	d3.json("//unpkg.com/world-atlas@1/world/110m.json"),

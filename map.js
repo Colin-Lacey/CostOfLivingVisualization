@@ -18,6 +18,7 @@ function initializeMap(world_topoJSON_data, city_coordinates){
 	$("#clearSelectionButton").on("click", onClearSelection_Map);
 	$.subscribe("citySelected", onCitySelected_Map);
 	$.subscribe("cityDeselected", onCityDeselected_Map);
+	$.subscribe("filtersUpdated", onFiltersUpdated);
 
 	refreshPlottedCities();
 }
@@ -108,6 +109,7 @@ function refreshPlottedCities(){
 		.on("mouseout", onMouseOutOfCity_Map)
 		.attr("r", 2)
 		.merge(cityUpdateSelection)
+		.attr("display", d => {if (d.Rank == 206) return "none";})
 		.attr("fill", d => mapColorScale(d[selectedIndex]))
 		.attr("cx", function(d){
 			let coords = mapProjection([d.lng, d.lat]);
@@ -120,6 +122,12 @@ function refreshPlottedCities(){
 
 		cityUpdateSelection.exit()
 		.remove();
+	
+	onFiltersUpdated(); // hide cities not matching filters
+}
+
+function onFiltersUpdated(){
+	console.log("hiii");
 }
 
 // HELPER FUNCTIONS
