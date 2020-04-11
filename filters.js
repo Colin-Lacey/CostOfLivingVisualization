@@ -3,6 +3,8 @@ function initializeFilters(){
 	appendFilter("cost_of_living", "Cost Of Living Index", "cost_of_living_filter_container");
 	appendFilter("rent", "Rent Index", "rent_filter_container");
 	appendFilter("groceries", "Groceries Index", "groceries_filter_container");
+	appendFilter("restaurant_price", "Restaurant Price Index", "restaurant_price_filter_container");
+	appendFilter("local_purchasing_power", "Local Purchasing Power Index", "local_purchasing_power_filter_container");
 }
 
 function appendFilter(filterVarName, filterNameFormal, divId){
@@ -32,7 +34,7 @@ function appendFilter(filterVarName, filterNameFormal, divId){
 		.select(`#${divId}`)
 		.append('svg')
 		.attr('width', 240)
-		.attr('height', 100)
+		.attr('height', 70)
 		.append('g')
 		.attr('transform', 'translate(20,25)');
 
