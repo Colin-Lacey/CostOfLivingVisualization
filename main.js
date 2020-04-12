@@ -37,7 +37,13 @@ function initialize(data){
 }
 
 function truncateAllIndexValues(){
-	
+	g_costOfLivingData.forEach(function (city){
+		city["Cost of Living Index"] = Math.trunc(city["Cost of Living Index"]);
+		city["Rent Index"] = Math.trunc(city["Rent Index"]);
+		city["Groceries Index"] = Math.trunc(city["Groceries Index"]);
+		city["Restaurant Price Index"] = Math.trunc(city["Restaurant Price Index"]);
+		city["Local Purchasing Power Index"] = Math.trunc(city["Local Purchasing Power Index"]);
+	})
 }
 
 function computeAllIndexStats(){
