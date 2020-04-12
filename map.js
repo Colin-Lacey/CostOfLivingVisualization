@@ -39,14 +39,14 @@ function addCoordinatesToCostOfLivingData(city_coordinates){
 }
 
 function drawMap(world_topoJSON_data){
-	mapHeight = 500;
+	mapHeight = 400;
 	mapWidth = 950;
 	
 	// create projection using Mercator.
 	// Converts a lattitude and longitude into a screen coordinate
 	// according to the specified projection type
 	mapProjection = d3.geoMercator()
-		.translate([mapWidth/2, mapHeight/2+100])
+		.translate([mapWidth/2, mapHeight/2+80])
 		.scale((mapWidth - 1) / 2 / Math.PI);
 	
 	// create a path generator to translate from topoJSON geometry to SVG paths

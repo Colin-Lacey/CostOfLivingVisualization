@@ -32,7 +32,7 @@ function appendFilter(filterNameNoSpace, filterName){
 		.min(g_filterValues[filterName].min)
 		.max(g_filterValues[filterName].max)
 		.width(205)
-		.ticks(7)
+		.tickValues(generateTicks(g_indexStats[filterName].min, g_indexStats[filterName].max))
 		.default([g_filterValues[filterName].min, g_filterValues[filterName].max])
 		.fill('#2196f3')
 		.on('onchange', val => {
@@ -48,20 +48,25 @@ function appendFilter(filterNameNoSpace, filterName){
 		.select(`#${filterNameNoSpace}-container`)
 		.append('svg')
 		.attr('width', 240)
-		.attr('height', 70)
+		.attr('height', 50)
 		.append('g')
-		.attr('transform', 'translate(20,25)');
+		.attr('transform', 'translate(20,10)');
 
 	gRange.call(sliderRange);
+}
 
-	let sliders = d3.selectAll(`#${filterNameNoSpace}-container .slider .parameter-value`);
-	let sliderId = [`${filterNameNoSpace}-min-index`, `${filterNameNoSpace}-max-index`];
-	let sliderInitVal = [g_filterValues[filterName].min, g_filterValues[filterName].max];
-	sliders.each(function(d, i){
-		d3.select(this)
-			.append("text")
-			.attr("id", ()=> sliderId[i])
-			.attr('transform', 'translate(0,-10)')
-			.text(() => sliderInitVal[i]);
-	});
+function generateTicks(min, max){
+	let firstTick = Math.ceil(min/10)*10;
+	let lastTick = Math.floor(max/10)*10;
+
+	let diff = 20;
+
+	let ticks = [min];
+	let currentVal = firstTick+diff;
+	while (currentVal+diff <= lastTick){
+		ticks.push(currentVal);
+		currentVal = currentVal + diff;
+	}
+	ticks.push(max);
+	return ticks;
 }
