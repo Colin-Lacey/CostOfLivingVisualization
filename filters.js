@@ -1,16 +1,16 @@
 
 function initializeFilters(){
-	appendFilter("cost_of_living", "Cost of Living Index", "cost_of_living_filter_container");
-	appendFilter("rent", "Rent Index", "rent_filter_container");
-	appendFilter("groceries", "Groceries Index", "groceries_filter_container");
-	appendFilter("restaurant_price", "Restaurant Price Index", "restaurant_price_filter_container");
-	appendFilter("local_purchasing_power", "Local Purchasing Power Index", "local_purchasing_power_filter_container");
+	appendFilter("cost_of_living", "Cost of Living Index");
+	appendFilter("rent", "Rent Index");
+	appendFilter("groceries", "Groceries Index");
+	appendFilter("restaurant_price", "Restaurant Price Index");
+	appendFilter("local_purchasing_power", "Local Purchasing Power Index");
 }
 
-function appendFilter(htmlIdPart, filterName, divId){
+function appendFilter(filterNameNoSpace, filterName){
 	let p = $("#filterContainer").append(
 		`<p>Filter ${filterName}</p>
-		<div id="${divId}"></div>
+		<div id="${filterNameNoSpace}"></div>
 	`);
 
 	var sliderRange = d3
@@ -22,8 +22,8 @@ function appendFilter(htmlIdPart, filterName, divId){
 		.default([g_filterValues[filterName].min, g_filterValues[filterName].max])
 		.fill('#2196f3')
 		.on('onchange', val => {
-			d3.select(`#${htmlIdPart}-min-index`).text(Math.trunc(val[0]));
-			d3.select(`#${htmlIdPart}-max-index`).text(Math.trunc(val[1]));
+			d3.select(`#${filterNameNoSpace}-min-index`).text(Math.trunc(val[0]));
+			d3.select(`#${filterNameNoSpace}-max-index`).text(Math.trunc(val[1]));
 
 			g_filterValues[filterName].min = Math.trunc(val[0]);
 			g_filterValues[filterName].max = Math.trunc(val[1]);
@@ -31,7 +31,7 @@ function appendFilter(htmlIdPart, filterName, divId){
 		});
 
 	var gRange = d3
-		.select(`#${divId}`)
+		.select(`#${filterNameNoSpace}`)
 		.append('svg')
 		.attr('width', 240)
 		.attr('height', 70)
@@ -40,8 +40,8 @@ function appendFilter(htmlIdPart, filterName, divId){
 
 	gRange.call(sliderRange);
 
-	let sliders = d3.selectAll(`#${divId} .slider .parameter-value`);
-	let sliderId = [`${htmlIdPart}-min-index`, `${htmlIdPart}-max-index`];
+	let sliders = d3.selectAll(`#${filterNameNoSpace} .slider .parameter-value`);
+	let sliderId = [`${filterNameNoSpace}-min-index`, `${filterNameNoSpace}-max-index`];
 	let sliderInitVal = [g_filterValues[filterName].min, g_filterValues[filterName].max];
 	sliders.each(function(d, i){
 		d3.select(this)
