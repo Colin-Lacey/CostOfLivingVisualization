@@ -20,7 +20,7 @@ body{
 
 #filterContainer{
 	width: 250px;
-	height: 500px;
+	height: 400px;
 	background: hsla(202, 70%, 80%, 1);
 	border-radius: 10px;
 }
@@ -28,7 +28,7 @@ body{
 #mapContainer{
 	position: relative;
 	width: 950px;
-	height: 500px;
+	height: 400px;
 	background: hsla(202, 70%, 80%, 1);
 	border-radius: 10px;
 }
@@ -46,6 +46,49 @@ body{
 	background: hsla(202, 70%, 80%, 1);
 	border-radius: 10px;
 }
+
+/*Css for the scatter plot */
+.scatter-column {
+	height: 20px;
+	width: 125px;
+	display: inline-block;
+}
+
+.scatter-column p {
+	text-align: center;
+}
+
+#scale {
+	height: 20px;
+	width: 800px;
+}
+
+#axis, #axis0 {
+	width: 125px;
+	height: 20px;
+	display: inline-block;
+	padding-left: 2px;
+	color: gray;
+}
+
+.scatter-plot {
+	width: 800px;
+	height: 260px;
+	overflow-y: scroll;
+}
+
+.scatter-plot div {
+	height: 25px;
+	width: 100%;
+}
+
+.scatter-plot svg {
+	height: 25px;
+	width: 127px;
+	display: inline-block;
+	padding-left: 5px;
+}
+/* End of css for the scatter plot */
 
 h1{
 	margin: 10px 10px;
