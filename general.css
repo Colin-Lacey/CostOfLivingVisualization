@@ -20,7 +20,7 @@ body{
 
 #filterContainer{
 	width: 250px;
-	height: 500px;
+	height: 400px;
 	background: hsla(202, 70%, 80%, 1);
 	border-radius: 10px;
 }
@@ -28,7 +28,7 @@ body{
 #mapContainer{
 	position: relative;
 	width: 950px;
-	height: 500px;
+	height: 400px;
 	background: hsla(202, 70%, 80%, 1);
 	border-radius: 10px;
 }
