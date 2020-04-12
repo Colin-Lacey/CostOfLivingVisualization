@@ -4,19 +4,19 @@ let g_root = document.documentElement;
 let g_costOfLivingData;
 
 let g_filterValues = { 
-	"Cost of Living Index": {min: 0, max: 140},
-	"Rent Index": {min: 0, max: 140},
-	"Groceries Index": {min: 0, max: 140},
-	"Restaurant Price Index": {min: 0, max: 140},
-	"Local Purchasing Power Index": {min: 0, max: 140}
+	"Cost of Living Index": {},
+	"Rent Index": {},
+	"Groceries Index": {},
+	"Restaurant Price Index": {},
+	"Local Purchasing Power Index": {}
 };
 
-let g_indexStats = {
-	cost_of_living: {}, // record min, avg, and max for each
-	rent: {},
-	groceries: {},
-	restaurant_price: {},
-	local_purchasing_power: {}
+let g_indexStats =  { 
+	"Cost of Living Index": {},
+	"Rent Index": {},
+	"Groceries Index": {},
+	"Restaurant Price Index": {},
+	"Local Purchasing Power Index": {}
 };
 
 // read in data
@@ -29,17 +29,39 @@ Promise.all([
 function initialize(data){
 	g_costOfLivingData = data[1];
 	computeAllIndexStats();
-	initializeMap(data[0], data[2]);
 	initializeFilters();
+	initializeMap(data[0], data[2]);
 	initializeBarChart();
 	initializeScatterPlot();
 }
 
 function computeAllIndexStats(){
-
+	computeIndexStats("Cost of Living Index");
+	computeIndexStats("Rent Index");
+	computeIndexStats("Groceries Index");
+	computeIndexStats("Restaurant Price Index");
+	computeIndexStats("Local Purchasing Power Index");
 }
 
-function computeIndexStats(){
-	console.log(g_costOfLivingData);
+function computeIndexStats(indexName){
+	let sum = 0;
+	let total = 0;
+	let max = 0;
+	let min = 130;
+	g_costOfLivingData.forEach(function(d){
+		total++;
+		sum += parseFloat(d[indexName]);
+		if (parseFloat(d[indexName]) > max){
+			max = parseFloat(d[indexName]);
+		}
+		if (parseFloat(d[indexName]) < min){
+			min = parseFloat(d[indexName]);
+		}
+	});
+	let avg = sum/total;
+
+	g_indexStats[indexName].min = Math.trunc(min);
+	g_indexStats[indexName].avg = Math.trunc(avg);
+	g_indexStats[indexName].max = Math.trunc(max);
 }
 

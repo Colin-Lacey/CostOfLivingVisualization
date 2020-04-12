@@ -57,7 +57,7 @@ function drawMap(world_topoJSON_data){
 		.scaleExtent([1, 8])
 		.on('zoom', zoomed);
 	
-	mapSvg = d3.select( "svg" )
+	mapSvg = d3.select( "#map" )
 		.attr( "width", mapWidth)
 		.attr( "height", mapHeight);
 	
