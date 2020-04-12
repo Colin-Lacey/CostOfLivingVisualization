@@ -150,31 +150,8 @@ function onFiltersUpdated(){
 // HELPER FUNCTIONS
 
 function computeColorScale(){
-	// make white the average index value for the currently selected index, rather than simply 50
-	let sum = 0;
-	let total = 0;
-	let max = 0;
-	let min = 130;
-	g_costOfLivingData.forEach(function(d){
-		total++;
-		sum += parseFloat(d[selectedIndex]);
-		if (parseFloat(d[selectedIndex]) > max){
-			max = parseFloat(d[selectedIndex]);
-		}
-		if (parseFloat(d[selectedIndex]) < min){
-			min = parseFloat(d[selectedIndex]);
-		}
-	});
-	let avg = sum/total;
-	
-	console.log("sum: ", sum);
-	console.log("total: ", total);
-	console.log("min: ", min);
-	console.log("average: ", avg);
-	console.log("max: ", max);
-	
 	mapColorScale = d3.scaleLinear()
-		.domain([min, avg, max])
+		.domain([g_indexStats[selectedIndex].min, g_indexStats[selectedIndex].avg, g_indexStats[selectedIndex].max])
 		.range(['#762a83','white', '#1b7837']);
 }
 	

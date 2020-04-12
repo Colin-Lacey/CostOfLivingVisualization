@@ -28,11 +28,16 @@ Promise.all([
 
 function initialize(data){
 	g_costOfLivingData = data[1];
+	truncateAllIndexValues();
 	computeAllIndexStats();
 	initializeFilters();
 	initializeMap(data[0], data[2]);
 	initializeBarChart();
 	initializeScatterPlot();
+}
+
+function truncateAllIndexValues(){
+	
 }
 
 function computeAllIndexStats(){
