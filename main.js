@@ -4,12 +4,20 @@ let g_root = document.documentElement;
 let g_costOfLivingData;
 
 let g_filterValues = { 
-	cost_of_living: {min: 0, max: 140},
-	rent: {min: 0, max: 140},
-	groceries: {min: 0, max: 140},
-	restaurant_price: {min: 0, max: 140},
-	local_purchasing_power: {min: 0, max: 140}
-}
+	"Cost of Living Index": {min: 0, max: 140},
+	"Rent Index": {min: 0, max: 140},
+	"Groceries Index": {min: 0, max: 140},
+	"Restaurant Price Index": {min: 0, max: 140},
+	"Local Purchasing Power Index": {min: 0, max: 140}
+};
+
+let g_indexStats = {
+	cost_of_living: {}, // record min, avg, and max for each
+	rent: {},
+	groceries: {},
+	restaurant_price: {},
+	local_purchasing_power: {}
+};
 
 // read in data
 Promise.all([
@@ -20,9 +28,18 @@ Promise.all([
 
 function initialize(data){
 	g_costOfLivingData = data[1];
+	computeAllIndexStats();
 	initializeMap(data[0], data[2]);
 	initializeFilters();
 	initializeBarChart();
 	initializeScatterPlot();
+}
+
+function computeAllIndexStats(){
+
+}
+
+function computeIndexStats(){
+	console.log(g_costOfLivingData);
 }
 

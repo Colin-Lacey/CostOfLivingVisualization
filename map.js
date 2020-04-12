@@ -134,11 +134,11 @@ function onFiltersUpdated(){
 			restaurant_price = parseFloat(d["Restaurant Price Index"]);
 			local_purchasing_power = parseFloat(d["Local Purchasing Power Index"]);
 			if (
-				(g_filterValues.cost_of_living.min <= cost_of_living) && (cost_of_living <= g_filterValues.cost_of_living.max) &&
-				(g_filterValues.rent.min <= rent) && (rent <= g_filterValues.rent.max) &&
-				(g_filterValues.groceries.min <= groceries) && (groceries <= g_filterValues.groceries.max) &&
-				(g_filterValues.restaurant_price.min <= restaurant_price) && (restaurant_price <= g_filterValues.restaurant_price.max) &&
-				(g_filterValues.local_purchasing_power.min <= local_purchasing_power) && (local_purchasing_power <= g_filterValues.local_purchasing_power.max) )
+				(g_filterValues["Cost of Living Index"].min <= cost_of_living) && (cost_of_living <= g_filterValues["Cost of Living Index"].max) &&
+				(g_filterValues["Rent Index"].min <= rent) && (rent <= g_filterValues["Rent Index"].max) &&
+				(g_filterValues["Groceries Index"].min <= groceries) && (groceries <= g_filterValues["Groceries Index"].max) &&
+				(g_filterValues["Restaurant Price Index"].min <= restaurant_price) && (restaurant_price <= g_filterValues["Restaurant Price Index"].max) &&
+				(g_filterValues["Local Purchasing Power Index"].min <= local_purchasing_power) && (local_purchasing_power <= g_filterValues["Local Purchasing Power Index"].max) )
 			{
 				return "";
 			}
