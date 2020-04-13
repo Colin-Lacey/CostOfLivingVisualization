@@ -29,6 +29,7 @@ function initialize(data){
 	initializeMap(data[0], data[2]);
 	initializeBarChart();
 	initializeScatterPlot();
+	$.publish("citySelected", g_costOfLivingData.find(d => d.City == "New York"));
 }
 
 function truncateAllIndexValues(){
