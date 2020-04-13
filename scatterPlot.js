@@ -112,12 +112,12 @@ function onCitySelected_ScatterPlot(event, cityData)
 	
 	scatterIndexInfo.forEach(function (index) {
 		svg.append("circle")
-			.classed("scatter-circle", true)
 			.attr("fill", index.color)
-			.transition()
-			.duration(500)
 			.attr("cx", index.scale(cityData[index.name]))
-			.attr("cy", 10);
+			.attr("cy", 10)
+			.transition()
+			.duration(1000)
+			.attr("r", 5);
 	});
 }
 
