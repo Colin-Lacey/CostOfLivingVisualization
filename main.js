@@ -3,21 +3,16 @@ let g_root = document.documentElement;
 
 let g_costOfLivingData;
 
-let g_filterValues = { 
-	"Cost of Living Index": {},
-	"Rent Index": {},
-	"Groceries Index": {},
-	"Restaurant Price Index": {},
-	"Local Purchasing Power Index": {}
-};
+let g_indices = [
+	"Cost of Living Index",
+	"Rent Index",
+	"Groceries Index",
+	"Restaurant Price Index",
+	"Local Purchasing Power Index"
+];
 
-let g_indexStats =  { 
-	"Cost of Living Index": {},
-	"Rent Index": {},
-	"Groceries Index": {},
-	"Restaurant Price Index": {},
-	"Local Purchasing Power Index": {}
-};
+let g_filterValues = {}; // will include the min and max selected on the filters
+let g_indexStats = {}; // will contain the min, avg, and max for each index
 
 // read in data
 Promise.all([
@@ -29,7 +24,7 @@ Promise.all([
 function initialize(data){
 	g_costOfLivingData = data[1];
 	truncateAllIndexValues();
-	computeAllIndexStats();
+	g_indices.forEach( index => computeIndexStats(index));
 	initializeFilters();
 	initializeMap(data[0], data[2]);
 	initializeBarChart();
@@ -38,23 +33,15 @@ function initialize(data){
 
 function truncateAllIndexValues(){
 	g_costOfLivingData.forEach(function (city){
-		city["Cost of Living Index"] = Math.trunc(city["Cost of Living Index"]);
-		city["Rent Index"] = Math.trunc(city["Rent Index"]);
-		city["Groceries Index"] = Math.trunc(city["Groceries Index"]);
-		city["Restaurant Price Index"] = Math.trunc(city["Restaurant Price Index"]);
-		city["Local Purchasing Power Index"] = Math.trunc(city["Local Purchasing Power Index"]);
-	})
-}
-
-function computeAllIndexStats(){
-	computeIndexStats("Cost of Living Index");
-	computeIndexStats("Rent Index");
-	computeIndexStats("Groceries Index");
-	computeIndexStats("Restaurant Price Index");
-	computeIndexStats("Local Purchasing Power Index");
+		g_indices.forEach( function (index) {
+			city[index] = Math.trunc(city[index]);
+		});
+	});
 }
 
 function computeIndexStats(indexName){
+	g_indexStats[indexName] = {};
+
 	let sum = 0;
 	let total = 0;
 	let max = 0;
