@@ -1,19 +1,25 @@
-#scatterContainer{
-	overflow-y: scroll;
+
+
+/* SCROLL */
+
+
+#scatterCitiesContainer{
+	height: 245px;
+	overflow-y: auto;
 }
 
-#scatterContainer::-webkit-scrollbar-track
+#scatterCitiesContainer::-webkit-scrollbar-track
 {
 	background-color: hsla(202, 70%, 80%, 1);
 }
 
-#scatterContainer::-webkit-scrollbar
+#scatterCitiesContainer::-webkit-scrollbar
 {
 	width: 5px;
 	background-color: gray;
 }
 
-#scatterContainer::-webkit-scrollbar-thumb
+#scatterCitiesContainer::-webkit-scrollbar-thumb
 {
 	background-color: gray;
 }

@@ -29,6 +29,7 @@ let scatterIndexInfo = [
 
 let bandScale;
 let svgWidth = 780;
+let svgHeight = 45;
 
 function initializeScatterPlot(){
 
@@ -52,11 +53,9 @@ function initializeScatterPlot(){
 }
 
 function setUpAxes(){
-	let axesSvg = d3.select("#scatterContainer")
-		.append("svg")
-		.attr("id", "scatterAxesSvg")
+	let axesSvg = d3.select("#scatterAxesSvg")
 		.attr("width", svgWidth)
-		.attr("height", 45);
+		.attr("height", svgHeight);
 
 	scatterIndexInfo.forEach( (index) => {
 		index.scale = d3.scaleLinear()
@@ -87,7 +86,7 @@ function onCitySelected_ScatterPlot(event, cityData)
 	console.log("Scatter plot: City selected:");
 	console.log(cityData);
 
-	let svg = d3.select("#scatterContainer")
+	let svg = d3.select("#scatterCitiesContainer")
 		.append("svg")
 		.attr("id", `scatterRow${cityData.Rank}`)
 		.attr("class", "scatterCityRow")
