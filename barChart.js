@@ -98,8 +98,8 @@ function updateBarsWithNewData(){
 	let enterLabels = labels.enter()
 		.append("text")
 		.attr("class", "bar_label")
-		.attr("x", function (d) { return x(d.Index); })
-		.text(function (d) { return d.Value; });
+		.style("text-anchor", "middle")
+		.attr("x", function (d) { return x(d.Index) + x.bandwidth()/2; });
 
 	rects.merge(enterRects)
 		.transition()
@@ -108,5 +108,11 @@ function updateBarsWithNewData(){
 		.attr("height", function (d) { return height - y(parseInt(d.Value)); });
 	
 	labels.merge(enterLabels)
-		.text(function (d) { return d.Value; });
+		.text(function (d) { 
+			return d.Value=="0" ? "" : d.Value; 
+		})
+		.transition()
+		.duration(500)
+		.attr("y", function (d) { return y(parseInt(d.Value)); })
+		.attr("dy", -5);
 }
