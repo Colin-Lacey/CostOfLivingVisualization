@@ -19,7 +19,7 @@ function initializeBarChart() {
 	var g = svg.append("g")
 		.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-		x.domain(["Cost Living","Groceries","Restaurants","Rent","Purchasing Power"]);
+		x.domain(["Cost Living","Rent","Groceries","Restaurants","Purchasing Power"]);
 		y.domain([0, 160]);
 	
 		g.append("g")
@@ -59,9 +59,9 @@ function onMouseOverCity_BarChart(event, cityData) {
 
 	const data = [
 		{ "Index": "Cost Living", "Value": cityData["Cost of Living Index"] },
+		{ "Index": "Rent", "Value": cityData["Rent Index"] },
 		{ "Index": "Groceries", "Value": cityData["Groceries Index"] },
 		{ "Index": "Restaurants", "Value": cityData["Restaurant Price Index"] },
-		{ "Index": "Rent", "Value": cityData["Rent Index"] },
 		{ "Index": "Purchasing Power", "Value": cityData["Local Purchasing Power Index"] }
 	]
 
@@ -79,9 +79,9 @@ function onMouseOverCity_BarChart(event, cityData) {
 		.attr("fill", function(d) {
 			switch(d.Index) {
 				case "Cost Living": return "#e41a1c";
+				case "Rent": return "#377eb8";
 				case "Groceries": return "#4daf4a";
 				case "Restaurants": return "#984ea3";
-				case "Rent": return "#377eb8";
 				case "Purchasing Power": return "#ff7f00";
 			}
 		});
