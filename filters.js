@@ -11,18 +11,7 @@ function setInitialFilterValues(){
 		g_filterValues[index] = {};
 		g_filterValues[index].min = g_indexStats[index].min;
 		g_filterValues[index].max = g_indexStats[index].max;
-		let sum = 0;
-				let total = 0;
-				let max = 0;
-				let min = 130;
-				g_costOfLivingData.forEach(function(d){
-					if ((d[index] >= g_filterValues[index].min) && (d[index] <= g_filterValues[index].max)){
-						total++;
-						sum += parseFloat(d[index]);
-					}
-				});
-				let avg = sum/total;
-		g_filterValues[index].avg = Math.trunc(avg);
+		computeFilterAverage(index);
 	});
 }
 
@@ -43,21 +32,9 @@ function appendFilter(filterNameNoSpace, filterName){
 		.on('onchange', val => {
 			d3.select(`#${filterNameNoSpace}-min-index`).text(Math.trunc(val[0]));
 			d3.select(`#${filterNameNoSpace}-max-index`).text(Math.trunc(val[1]));
-
 			g_filterValues[filterName].min = Math.trunc(val[0]);
 			g_filterValues[filterName].max = Math.trunc(val[1]);
-				let sum = 0;
-				let total = 0;
-				let max = 0;
-				let min = 130;
-				g_costOfLivingData.forEach(function(d){
-					if ((d[filterName] >= g_filterValues[filterName].min) && (d[filterName] <= g_filterValues[filterName].max)){
-						total++;
-						sum += parseFloat(d[filterName]);
-					}
-				});
-				let avg = sum/total;
-			g_filterValues[filterName].avg = Math.trunc(avg);
+			computeFilterAverage(filterName);
 			$.publish("filtersUpdated");
 		});
 

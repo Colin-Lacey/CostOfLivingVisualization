@@ -128,7 +128,6 @@ function refreshPlottedCities(){
 }
 
 function onFiltersUpdated(){
-	refreshPlottedCities();
 	mapSvg.selectAll(".city-circle")
 		.attr("display", (city) => {
 			let thisCityPassesTest = doesThisCityPassAllFilters(city);
@@ -139,6 +138,8 @@ function onFiltersUpdated(){
 				return "none";
 			}
 		});
+	refreshPlottedCities();
+
 }
 
 // HELPER FUNCTIONS
