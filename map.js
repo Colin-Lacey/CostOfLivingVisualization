@@ -127,27 +127,23 @@ function refreshPlottedCities(){
 
 function onFiltersUpdated(){
 	mapSvg.selectAll(".city-circle")
-		.attr("display", function(d, i){
-			cost_of_living = parseFloat(d["Cost of Living Index"]);
-			rent = parseFloat(d["Rent Index"]);
-			groceries = parseFloat(d["Groceries Index"]);
-			restaurant_price = parseFloat(d["Restaurant Price Index"]);
-			local_purchasing_power = parseFloat(d["Local Purchasing Power Index"]);
-			if (
-				(g_filterValues["Cost of Living Index"].min <= cost_of_living) && (cost_of_living <= g_filterValues["Cost of Living Index"].max) &&
-				(g_filterValues["Rent Index"].min <= rent) && (rent <= g_filterValues["Rent Index"].max) &&
-				(g_filterValues["Groceries Index"].min <= groceries) && (groceries <= g_filterValues["Groceries Index"].max) &&
-				(g_filterValues["Restaurant Price Index"].min <= restaurant_price) && (restaurant_price <= g_filterValues["Restaurant Price Index"].max) &&
-				(g_filterValues["Local Purchasing Power Index"].min <= local_purchasing_power) && (local_purchasing_power <= g_filterValues["Local Purchasing Power Index"].max) )
-			{
-				return "";
-			}
-			else
-				return "none";
+		.attr("display", (city) => {
+			return doesThisCityPassAllFilters(city) ? "" : "none";
 		});
 }
 
 // HELPER FUNCTIONS
+
+function doesThisCityPassAllFilters(city){
+	let passesAllFilters = true;
+
+	g_indices.forEach( (index) => {
+		if (!(g_filterValues[index].min <= city[index] && city[index] <= g_filterValues[index].max))
+			passesAllFilters = false;
+	});
+
+	return passesAllFilters;
+}
 
 function computeColorScale(){
 	mapColorScale = d3.scaleLinear()
