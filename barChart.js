@@ -93,7 +93,7 @@ function onMouseOverCity_BarChart(event, cityData) {
 
 
 function onMouseOutOfCity_BarChart(event, cityData) {
-
+	$("#cityName").empty();
 	let svg = d3.select("#barchart");
 
 	svg.selectAll(".bar")
