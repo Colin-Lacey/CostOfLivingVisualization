@@ -47,7 +47,7 @@
 
 .boundary {
 	fill: none;
-	stroke: var(--chart-background-color);
+	stroke: var(--chart-border-color);
 	stroke-linejoin: round;
 	stroke-linecap: round;
 	vector-effect: non-scaling-stroke;

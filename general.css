@@ -7,12 +7,13 @@
 
 :root {
 	--body-background-color: hsla(202, 70%, 85%, 1);
-	--chart-background-color: hsla(202, 70%, 80%, 1);
-	--land-color: hsla(74, 69%, 87%, 1);
+	--chart-background-color: white;
+	--chart-border-color: lightgrey;
+	--land-color: darkgrey;
 
-	--cheap-city-color: #762a83;
+	--cheap-city-color: #b2182b;
 	--average-city-color: white;
-	--expensive-city-color: #1b7837;
+	--expensive-city-color: #2166ac;
 
 	--cost-living-color: #e41a1c;
 	--rent-color: #377eb8;

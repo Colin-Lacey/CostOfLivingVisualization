@@ -117,15 +117,18 @@ function refreshPlottedCities(){
 		.attr("cy", function(d){
 			let coords = mapProjection([d.lng, d.lat]);
 			return coords[1];
-		});
+		})
+		.attr('stroke','black')
+		.attr('stroke-width','0.1px');
 
 		cityUpdateSelection.exit()
 		.remove();
 	
-	onFiltersUpdated(); // hide cities not matching filters
+	//onFiltersUpdated(); // hide cities not matching filters
 }
 
 function onFiltersUpdated(){
+	refreshPlottedCities();
 	mapSvg.selectAll(".city-circle")
 		.attr("display", (city) => {
 			let thisCityPassesTest = doesThisCityPassAllFilters(city);
@@ -153,7 +156,7 @@ function doesThisCityPassAllFilters(city){
 
 function computeColorScale(){
 	mapColorScale = d3.scaleLinear()
-		.domain([g_indexStats[selectedIndex].min, g_indexStats[selectedIndex].avg, g_indexStats[selectedIndex].max])
+		.domain([g_filterValues[selectedIndex].min, g_filterValues[selectedIndex].avg, g_filterValues[selectedIndex].max])
 		.range([getComputedStyle(g_root).getPropertyValue('--cheap-city-color'),
 				getComputedStyle(g_root).getPropertyValue('--average-city-color'),
 				getComputedStyle(g_root).getPropertyValue('--expensive-city-color')
