@@ -11,6 +11,14 @@
 	r: 5;
 }
 
+.scatterCityRow{
+	border-radius: 5px;
+}
+
+.scatter-row-hovered{
+	background-color: hsla(202, 70%, 85%, 1);
+}
+
 
 /* SCROLL */
 

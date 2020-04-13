@@ -91,7 +91,15 @@ function onCitySelected_ScatterPlot(event, cityData)
 		.attr("height", 20)
 		.on("click", () => {
 			$.publish("cityDeselected", cityData);
-		});
+		})
+		.on("mouseover", () => {
+			svg.classed("scatter-row-hovered", true);
+			$.publish("mouseOverCity", cityData);
+		})
+		.on("mouseout", () => {
+			svg.classed("scatter-row-hovered", false);
+			$.publish("mouseOutOfCity", cityData);
+		})
 	
 
 	svg.append("text")
