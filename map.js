@@ -154,7 +154,10 @@ function doesThisCityPassAllFilters(city){
 function computeColorScale(){
 	mapColorScale = d3.scaleLinear()
 		.domain([g_indexStats[selectedIndex].min, g_indexStats[selectedIndex].avg, g_indexStats[selectedIndex].max])
-		.range(['#762a83','white', '#1b7837']);
+		.range([getComputedStyle(g_root).getPropertyValue('--cheap-city-color'),
+				getComputedStyle(g_root).getPropertyValue('--average-city-color'),
+				getComputedStyle(g_root).getPropertyValue('--expensive-city-color')
+		]);
 }
 	
 function onMouseOverCity_Map(d){

@@ -9,6 +9,10 @@
 	--body-background-color: hsla(202, 70%, 85%, 1);
 	--chart-background-color: hsla(202, 70%, 80%, 1);
 	--land-color: hsla(74, 69%, 87%, 1);
+
+	--cheap-city-color: #762a83;
+	--average-city-color: white;
+	--expensive-city-color: #1b7837;
 }
 
 .container{ display: flex; }
