@@ -22,7 +22,7 @@ let scatterIndexInfo = [
 	},
 	{
 		name: "Local Purchasing Power Index",
-		shortName: "Purchasing Power",
+		shortName: "Purchasing Pwr",
 		color: "#ff7f00"
 	},
 ];

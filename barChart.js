@@ -19,7 +19,7 @@ function initializeBarChart() {
 	var g = svg.append("g")
 		.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-		x.domain(["Cost Living","Rent","Groceries","Restaurants","Purchasing Power"]);
+		x.domain(["Cost Living","Rent","Groceries","Restaurants","Purchasing Pwr"]);
 		y.domain([0, 160]);
 	
 		g.append("g")
@@ -62,7 +62,7 @@ function onMouseOverCity_BarChart(event, cityData) {
 		{ "Index": "Rent", "Value": cityData["Rent Index"] },
 		{ "Index": "Groceries", "Value": cityData["Groceries Index"] },
 		{ "Index": "Restaurants", "Value": cityData["Restaurant Price Index"] },
-		{ "Index": "Purchasing Power", "Value": cityData["Local Purchasing Power Index"] }
+		{ "Index": "Purchasing Pwr", "Value": cityData["Local Purchasing Power Index"] }
 	]
 
 	x.domain(data.map(function (d) { return d.Index; }));
@@ -82,7 +82,7 @@ function onMouseOverCity_BarChart(event, cityData) {
 				case "Rent": return "#377eb8";
 				case "Groceries": return "#4daf4a";
 				case "Restaurants": return "#984ea3";
-				case "Purchasing Power": return "#ff7f00";
+				case "Purchasing Pwr": return "#ff7f00";
 			}
 		});
 	
@@ -93,7 +93,7 @@ function onMouseOverCity_BarChart(event, cityData) {
 
 
 function onMouseOutOfCity_BarChart(event, cityData) {
-	$("#cityName").empty();
+	$("#cityName").html("<b>&nbsp</b>");
 	let svg = d3.select("#barchart");
 
 	svg.selectAll(".bar")
