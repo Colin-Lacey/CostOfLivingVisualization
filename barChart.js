@@ -87,11 +87,11 @@ function updateBarsWithNewData(){
 		.attr("width", x.bandwidth())
 		.attr("fill", function(d) {
 			switch(d.Index) {
-				case "Cost Living": return "#e41a1c";
-				case "Rent": return "#377eb8";
-				case "Groceries": return "#4daf4a";
-				case "Restaurants": return "#984ea3";
-				case "Purchasing Pwr": return "#ff7f00";
+				case "Cost Living": return getComputedStyle(g_root).getPropertyValue('--cost-living-color');
+				case "Rent": return getComputedStyle(g_root).getPropertyValue('--rent-color');
+				case "Groceries": return getComputedStyle(g_root).getPropertyValue('--groceries-color');
+				case "Restaurants": return getComputedStyle(g_root).getPropertyValue('--restaurants-color');
+				case "Purchasing Pwr": return getComputedStyle(g_root).getPropertyValue('--purchasing-pwr-color');
 			}
 		});
 	

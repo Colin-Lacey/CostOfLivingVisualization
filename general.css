@@ -13,6 +13,12 @@
 	--cheap-city-color: #762a83;
 	--average-city-color: white;
 	--expensive-city-color: #1b7837;
+
+	--cost-living-color: #e41a1c;
+	--rent-color: #377eb8;
+	--groceries-color: #4daf4a;
+	--restaurants-color: #984ea3;
+	--purchasing-pwr-color: #ff7f00;
 }
 
 .container{ display: flex; }

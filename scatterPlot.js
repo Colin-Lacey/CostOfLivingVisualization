@@ -3,27 +3,27 @@ let scatterIndexInfo = [
 	{
 		name: "Cost of Living Index",
 		shortName: "Cost Living",
-		color: "#e41a1c"
+		color: getComputedStyle(g_root).getPropertyValue('--cost-living-color')
 	},
 	{
 		name: "Rent Index",
 		shortName: "Rent",
-		color: "#377eb8"
+		color: getComputedStyle(g_root).getPropertyValue('--rent-color')
 	},
 	{
 		name: "Groceries Index",
 		shortName: "Groceries",
-		color: "#4daf4a"
+		color: getComputedStyle(g_root).getPropertyValue('--groceries-color')
 	},
 	{
 		name: "Restaurant Price Index",
 		shortName: "Restaurants",
-		color: "#984ea3"
+		color: getComputedStyle(g_root).getPropertyValue('--restaurants-color')
 	},
 	{
 		name: "Local Purchasing Power Index",
 		shortName: "Purchasing Pwr",
-		color: "#ff7f00"
+		color: getComputedStyle(g_root).getPropertyValue('--purchasing-pwr-color')
 	},
 ];
 
