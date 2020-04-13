@@ -134,5 +134,9 @@ function onCityDeselected_ScatterPlot(event, cityData)
 
 function onCitySelectionCleared_ScatterPlot(event) 
 {
-	$("#scatterCitiesContainer").empty();
+	d3.selectAll(`#scatterCitiesContainer .scatterCityRow`)
+	.transition()
+	.duration(1000)
+	.style("opacity", 0)
+	.on("end", () => {$("#scatterCitiesContainer").empty();});
 }
