@@ -88,9 +88,11 @@ function onCitySelected_ScatterPlot(event, cityData)
 		.attr("id", `scatterRow${cityData.Rank}`)
 		.attr("class", "scatterCityRow")
 		.attr("width", svgWidth)
-		.attr("height", 20);
+		.attr("height", 20)
+		.on("click", () => {
+			$.publish("cityDeselected", cityData);
+		});
 	
-	svg.Rank = cityData.Rank;
 
 	svg.append("text")
 		.classed("city-label", true)
@@ -99,8 +101,6 @@ function onCitySelected_ScatterPlot(event, cityData)
 		.attr("y", 15)
 		.text(cityData.City);
 	
-	$(svg).click(onScatterRowClicked);
-	
 	scatterIndexInfo.forEach(function (index) {
 		svg.append("circle")
 			.classed("scatter-circle", true)
@@ -108,14 +108,6 @@ function onCitySelected_ScatterPlot(event, cityData)
 			.attr("cx", index.scale(cityData[index.name]))
 			.attr("cy", 10);
 	});
-}
-
-function onScatterRowClicked(d){
-	console.log(d.data());
-	let svg = d3.select(this);
-	console.log(svg);
-	console.log(svg.data());
-	//$.publish("cityDeselected", d);
 }
 
 function onCityDeselected_ScatterPlot(event, cityData) 
