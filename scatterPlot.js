@@ -1,24 +1,82 @@
+
+let scatterIndexInfo = [
+	{
+		name: "Cost of Living Index",
+		shortName: "Cost. Living"
+	},
+	{
+		name: "Rent Index",
+		shortName: "Rent"
+	},
+	{
+		name: "Groceries Index",
+		shortName: "Groceries"
+	},
+	{
+		name: "Restaurant Price Index",
+		shortName: "Restaurant"
+	},
+	{
+		name: "Local Purchasing Power Index",
+		shortName: "Purch. Power"
+	},
+];
+
+let bandScale;
+let svgWidth = 790;
+
 function initializeScatterPlot(){
 
-	let axesSvg = d3.select("#scatterContainer")
-		.append("svg")
-		.attr("id", "scatterAxesSvg")
-		.attr("width", 800)
-		.attr("height", 50);
+	bandScale = d3.scaleBand()
+		.domain([ "City",
+			"Cost of Living Index",
+			"Rent Index",
+			"Groceries Index",
+			"Restaurant Price Index",
+			"Local Purchasing Power Index"
+		])
+		.range([0, svgWidth])
+		.paddingInner(0.15)
+		.paddingOuter(0.1);
 	
-	let costOfLivingScale = d3.scaleLinear()
-		.domain([g_indexStats["Cost of Living Index"].min, g_indexStats["Cost of Living Index"].max])
-		.range([100, 500])
-		.nice();
-
-	axesSvg.append("g")
-		.attr("transform", "translate(0, 20)")
-		.call(d3.axisBottom(costOfLivingScale));
-
+	setUpAxes();
 
 	$.subscribe("citySelected", onCitySelected_ScatterPlot);
 	$.subscribe("cityDeselected", onCityDeselected_ScatterPlot);
 	$.subscribe("citySelectionCleared", onCitySelectionCleared_ScatterPlot);
+}
+
+function setUpAxes(){
+	let axesSvg = d3.select("#scatterContainer")
+		.append("svg")
+		.attr("id", "scatterAxesSvg")
+		.attr("width", svgWidth)
+		.attr("height", 50);
+
+	scatterIndexInfo.forEach( (index) => {
+		index.scale = d3.scaleLinear()
+			.domain([g_indexStats[index.name].min, g_indexStats[index.name].max])
+			.range([bandScale(index.name), bandScale(index.name)+bandScale.bandwidth()])
+			.nice();
+
+		index.axis = d3.axisBottom(index.scale)
+			.ticks(3);
+			//.tickValues(index.scale.domain());
+
+		let range = index.scale.range();
+		let middleX = (range[0] + range[1])/2;
+
+		axesSvg.append("g")
+			.attr("transform", "translate(0, 30)")
+			.call(index.axis)
+			.append("text")
+			.attr("class", "label")
+			.attr("x", middleX)
+			.attr("dy", -8)
+			.attr("fill", "black")
+			.style("text-anchor", "middle")
+			.text(index.shortName);
+	});
 }
 
 function onCitySelected_ScatterPlot(event, cityData) 
