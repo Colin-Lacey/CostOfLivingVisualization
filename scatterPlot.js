@@ -30,6 +30,7 @@ let scatterIndexInfo = [
 let bandScale;
 let svgWidth = 780;
 let svgHeight = 45;
+let cityColumnWidth = 90;
 
 function initializeScatterPlot(){
 
@@ -41,7 +42,7 @@ function initializeScatterPlot(){
 			"Restaurant Price Index",
 			"Local Purchasing Power Index"
 		])
-		.range([90, svgWidth])
+		.range([cityColumnWidth, svgWidth])
 		.paddingInner(0.15)
 		.paddingOuter(0.05);
 	
