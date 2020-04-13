@@ -4,7 +4,7 @@
 }
 
 #map{
-	background: hsla(202, 70%, 80%, 1);
+	background: var(--chart-background-color);
 	border-radius: 10px;
 }
 
@@ -38,16 +38,16 @@
 }
 
 .sphere {
-	fill:hsla(202, 70%, 80%, 1);
+	fill:var(--chart-background-color);
 }
 
 .land {
-	fill: hsla(74, 69%, 87%, 1);
+	fill: var(--land-color);
 }
 
 .boundary {
 	fill: none;
-	stroke: hsla(57, 0%, 80%, 1);
+	stroke: var(--chart-background-color);
 	stroke-linejoin: round;
 	stroke-linecap: round;
 	vector-effect: non-scaling-stroke;
