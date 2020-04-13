@@ -123,7 +123,11 @@ function onCitySelected_ScatterPlot(event, cityData)
 
 function onCityDeselected_ScatterPlot(event, cityData) 
 {
-	d3.select(`#scatterCitiesContainer #scatterRow${cityData.Rank}`).remove();
+	d3.selectAll(`#scatterCitiesContainer #scatterRow${cityData.Rank}`)
+		.transition()
+		.duration(1000)
+		.style("opacity", 0)
+		.on("end", () => {d3.select(`#scatterCitiesContainer #scatterRow${cityData.Rank}`).remove();});
 }
 
 function onCitySelectionCleared_ScatterPlot(event) 
