@@ -126,5 +126,5 @@ function onCityDeselected_ScatterPlot(event, cityData)
 
 function onCitySelectionCleared_ScatterPlot(event) 
 {
-	console.log("Scatter plot: City selection cleared.");
+	$("#scatterCitiesContainer").empty();
 }
