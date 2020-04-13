@@ -1,19 +1,19 @@
 function initializeScatterPlot(){
 
-	//Setting up the axis for each of the indicies at the top 
-	var vis = d3.selectAll('#axis');
-	var xScale = d3.scaleLinear()
- 		.domain([0, 140])
-		.range([0, 115]);
+	let axesSvg = d3.select("#scatterContainer")
+		.append("svg")
+		.attr("id", "scatterAxesSvg")
+		.attr("width", 800)
+		.attr("height", 50);
+	
+	let costOfLivingScale = d3.scaleLinear()
+		.domain([g_indexStats["Cost of Living Index"].min, g_indexStats["Cost of Living Index"].max])
+		.range([100, 500])
+		.nice();
 
-	var xAxis = d3.axisBottom(xScale)
-		.ticks(3)
-		.tickValues(d3.range(0, 141, 70));
-		 
-	vis.append('g')
-		.style("font", "8px Arial")
-		.call(xAxis);
-	//need to change the placement of the 0, getscut off a bit
+	axesSvg.append("g")
+		.attr("transform", "translate(0, 20)")
+		.call(d3.axisBottom(costOfLivingScale));
 
 
 	$.subscribe("citySelected", onCitySelected_ScatterPlot);
@@ -24,28 +24,8 @@ function initializeScatterPlot(){
 function onCitySelected_ScatterPlot(event, cityData) 
 {
 	console.log("Scatter plot: City selected:");
-	console.log(cityData.City);
-	console.log(cityData['Cost of Living Index']);
+	console.log(cityData);
 
-	var aDiv = document.createElement('div');
-	aDiv.id = cityData.City;7
-	document.getElementById('plot').appendChild(aDiv);
-
-	//var select = document.getElementById(cityData.City);
-	//select.innerHTML += cityData.City;
-
-	var indicies = ['City', 'Cost', 'Rent', 'Groceries', 'Restaurant', 'Local'];
-
-	for (var i = 0; i < indicies.length; i++)
-	{
-		var anSvg = document.createElement('svg');
-		anSvg.id = cityData.City+indicies[i];
-		document.getElementById(cityData.City).appendChild(anSvg);
-	}
-	var select = document.getElementById(cityData.City+"City");
-	select.innerHTML += cityData.City;
-
-	//d3 for adding the dots here
 }
 
 function onCityDeselected_ScatterPlot(event, cityData) 
