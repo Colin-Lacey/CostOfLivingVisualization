@@ -83,9 +83,6 @@ function setUpAxes(){
 
 function onCitySelected_ScatterPlot(event, cityData) 
 {
-	console.log("Scatter plot: City selected:");
-	console.log(cityData);
-
 	let svg = d3.select("#scatterCitiesContainer")
 		.append("svg")
 		.attr("id", `scatterRow${cityData.Rank}`)
@@ -111,8 +108,7 @@ function onCitySelected_ScatterPlot(event, cityData)
 
 function onCityDeselected_ScatterPlot(event, cityData) 
 {
-	console.log("Scatter plot: City deselected:");
-	console.log(cityData);
+	d3.select(`#scatterCitiesContainer #scatterRow${cityData.Rank}`).remove();
 }
 
 function onCitySelectionCleared_ScatterPlot(event) 
