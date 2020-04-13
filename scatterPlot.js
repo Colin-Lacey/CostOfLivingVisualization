@@ -22,7 +22,7 @@ let scatterIndexInfo = [
 	},
 	{
 		name: "Local Purchasing Power Index",
-		shortName: "Purchasing Power",
+		shortName: "Purchasing Pwr",
 		color: "#ff7f00"
 	},
 ];
@@ -85,6 +85,7 @@ function onCitySelected_ScatterPlot(event, cityData)
 {
 	let svg = d3.select("#scatterCitiesContainer")
 		.append("svg")
+		.style("opacity", 0)
 		.attr("id", `scatterRow${cityData.Rank}`)
 		.attr("class", "scatterCityRow")
 		.attr("width", svgWidth)
@@ -100,8 +101,7 @@ function onCitySelected_ScatterPlot(event, cityData)
 		.on("mouseout", () => {
 			svg.classed("scatter-row-hovered", false);
 			$.publish("mouseOutOfCity", cityData);
-		})
-	
+		});
 
 	svg.append("text")
 		.classed("city-label", true)
@@ -112,19 +112,31 @@ function onCitySelected_ScatterPlot(event, cityData)
 	
 	scatterIndexInfo.forEach(function (index) {
 		svg.append("circle")
-			.classed("scatter-circle", true)
 			.attr("fill", index.color)
 			.attr("cx", index.scale(cityData[index.name]))
-			.attr("cy", 10);
+			.attr("cy", 10)
+			.attr("r", 5);
 	});
+
+	svg.transition()
+		.duration(1000)
+		.style("opacity", 1);
 }
 
 function onCityDeselected_ScatterPlot(event, cityData) 
 {
-	d3.select(`#scatterCitiesContainer #scatterRow${cityData.Rank}`).remove();
+	d3.selectAll(`#scatterCitiesContainer #scatterRow${cityData.Rank}`)
+		.transition()
+		.duration(1000)
+		.style("opacity", 0)
+		.on("end", () => {d3.select(`#scatterCitiesContainer #scatterRow${cityData.Rank}`).remove();});
 }
 
 function onCitySelectionCleared_ScatterPlot(event) 
 {
-	$("#scatterCitiesContainer").empty();
+	d3.selectAll(`#scatterCitiesContainer .scatterCityRow`)
+	.transition()
+	.duration(1000)
+	.style("opacity", 0)
+	.on("end", () => {$("#scatterCitiesContainer").empty();});
 }
