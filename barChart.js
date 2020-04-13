@@ -1,7 +1,5 @@
 
-let g;
-let x;
-let y;
+let g, x, y, height, data;
 
 function initializeBarChart() {
 	$.subscribe("mouseOverCity", onMouseOverCity_BarChart);
@@ -11,10 +9,10 @@ function initializeBarChart() {
 
 	$("#cityName").html("<b>&nbsp</b>");
 
-	let svg = d3.select("#barchart"),
-		margin = { top: 20, right: 20, bottom: 30, left: 40 },
-		width = +400 - margin.left - margin.right,
-		height = +280 - margin.top - margin.bottom;
+	let svg = d3.select("#barchart");
+	let margin = { top: 20, right: 20, bottom: 30, left: 40 };
+	let width = +400 - margin.left - margin.right;
+	height = +280 - margin.top - margin.bottom;
 
 	//width = +svg.attr("width") - margin.left - margin.right,
 	//height = +svg.attr("height") - margin.top - margin.bottom;
@@ -42,12 +40,14 @@ function initializeBarChart() {
 		.attr("dy", "0.71em")
 		.attr("text-anchor", "end")
 		.text("Frequency");
+	
+	onMouseOutOfCity_BarChart();
 }
 
 function onMouseOverCity_BarChart(event, cityData) {
 	$("#cityName").html("<b>"+cityData.City+"</b>");
 
-	const data = [
+	data = [
 		{ "Index": "Cost Living", "Value": cityData["Cost of Living Index"] },
 		{ "Index": "Rent", "Value": cityData["Rent Index"] },
 		{ "Index": "Groceries", "Value": cityData["Groceries Index"] },
@@ -55,14 +55,33 @@ function onMouseOverCity_BarChart(event, cityData) {
 		{ "Index": "Purchasing Pwr", "Value": cityData["Local Purchasing Power Index"] }
 	];
 
-	g.selectAll(".bar")
-		.data(data)
-		.enter().append("rect")
+	updateBarsWithNewData();
+		
+}
+
+function onMouseOutOfCity_BarChart(event, cityData) {
+	$("#cityName").html("<b>&nbsp</b>");
+
+	data = [
+		{ "Index": "Cost Living", "Value": 0 },
+		{ "Index": "Rent", "Value": 0 },
+		{ "Index": "Groceries", "Value": 0 },
+		{ "Index": "Restaurants", "Value": 0 },
+		{ "Index": "Purchasing Pwr", "Value": 0 }
+	];
+
+	updateBarsWithNewData();
+}
+
+function updateBarsWithNewData(){
+	let rects = g.selectAll(".bar")
+		.data(data);
+	
+	let enterRects = rects.enter()
+		.append("rect")
 		.attr("class", "bar")
 		.attr("x", function (d) { return x(d.Index); })
-		.attr("y", function (d) { return y(parseInt(d.Value)); })
 		.attr("width", x.bandwidth())
-		.attr("height", function (d) { return height - y(parseInt(d.Value)); })
 		.attr("fill", function(d) {
 			switch(d.Index) {
 				case "Cost Living": return "#e41a1c";
@@ -72,18 +91,10 @@ function onMouseOverCity_BarChart(event, cityData) {
 				case "Purchasing Pwr": return "#ff7f00";
 			}
 		});
-	
-		
-}
 
-
-
-
-function onMouseOutOfCity_BarChart(event, cityData) {
-	$("#cityName").html("<b>&nbsp</b>");
-	let svg = d3.select("#barchart");
-
-	svg.selectAll(".bar")
-		.remove()
-		.transition();
+	rects.merge(enterRects)
+		.transition()
+		.duration(500)
+		.attr("y", function (d) { return y(parseInt(d.Value)); })
+		.attr("height", function (d) { return height - y(parseInt(d.Value)); });
 }
