@@ -61,7 +61,6 @@ function setUpAxes(){
 
 		index.axis = d3.axisBottom(index.scale)
 			.ticks(3);
-			//.tickValues(index.scale.domain());
 
 		let range = index.scale.range();
 		let middleX = (range[0] + range[1])/2;
@@ -83,6 +82,13 @@ function onCitySelected_ScatterPlot(event, cityData)
 {
 	console.log("Scatter plot: City selected:");
 	console.log(cityData);
+
+	let svg = d3.select("#scatterContainer")
+		.append("svg")
+		.attr("id", `scatterRow${cityData.Rank}`)
+		.attr("class", "scatterCityRow")
+		.attr("width", svgWidth)
+		.attr("height", 20);
 
 }
 
