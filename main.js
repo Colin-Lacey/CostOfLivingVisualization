@@ -14,8 +14,6 @@ let g_indices = [
 let g_filterValues = {}; // will include the min and max selected on the filters
 let g_indexStats = {}; // will contain the min, avg, and max for each index
 
-
-
 // read in data
 Promise.all([
 	d3.json("//unpkg.com/world-atlas@1/world/110m.json"),
