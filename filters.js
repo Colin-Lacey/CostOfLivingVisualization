@@ -1,24 +1,17 @@
 
 function initializeFilters(){
 	setInitialFilterValues();
-	appendFilter("cost_of_living", "Cost of Living Index");
-	appendFilter("rent", "Rent Index");
-	appendFilter("groceries", "Groceries Index");
-	appendFilter("restaurant_price", "Restaurant Price Index");
-	appendFilter("local_purchasing_power", "Local Purchasing Power Index");
+	g_indices.forEach(function(index){
+		appendFilter(index.replace(/ /g, "_"), index);
+	});
 }
 
 function setInitialFilterValues(){
-	g_filterValues["Cost of Living Index"].min = g_indexStats["Cost of Living Index"].min;
-	g_filterValues["Cost of Living Index"].max = g_indexStats["Cost of Living Index"].max;
-	g_filterValues["Rent Index"].min = g_indexStats["Rent Index"].min;
-	g_filterValues["Rent Index"].max = g_indexStats["Rent Index"].max;
-	g_filterValues["Groceries Index"].min = g_indexStats["Groceries Index"].min;
-	g_filterValues["Groceries Index"].max = g_indexStats["Groceries Index"].max;
-	g_filterValues["Restaurant Price Index"].min = g_indexStats["Restaurant Price Index"].min;
-	g_filterValues["Restaurant Price Index"].max = g_indexStats["Restaurant Price Index"].max;
-	g_filterValues["Local Purchasing Power Index"].min = g_indexStats["Local Purchasing Power Index"].min;
-	g_filterValues["Local Purchasing Power Index"].max = g_indexStats["Local Purchasing Power Index"].max;
+	g_indices.forEach( function(index){
+		g_filterValues[index] = {};
+		g_filterValues[index].min = g_indexStats[index].min;
+		g_filterValues[index].max = g_indexStats[index].max;
+	});
 }
 
 function appendFilter(filterNameNoSpace, filterName){
