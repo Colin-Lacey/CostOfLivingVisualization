@@ -77,6 +77,9 @@ function updateBarsWithNewData(){
 	let rects = g.selectAll(".bar")
 		.data(data);
 	
+	let labels = g.selectAll(".bar_label")
+		.data(data);
+	
 	let enterRects = rects.enter()
 		.append("rect")
 		.attr("class", "bar")
@@ -91,10 +94,19 @@ function updateBarsWithNewData(){
 				case "Purchasing Pwr": return "#ff7f00";
 			}
 		});
+	
+	let enterLabels = labels.enter()
+		.append("text")
+		.attr("class", "bar_label")
+		.attr("x", function (d) { return x(d.Index); })
+		.text(function (d) { return d.Value; });
 
 	rects.merge(enterRects)
 		.transition()
 		.duration(500)
 		.attr("y", function (d) { return y(parseInt(d.Value)); })
 		.attr("height", function (d) { return height - y(parseInt(d.Value)); });
+	
+	labels.merge(enterLabels)
+		.text(function (d) { return d.Value; });
 }
