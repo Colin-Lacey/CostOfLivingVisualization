@@ -51,7 +51,7 @@ function setUpAxes(){
 		.append("svg")
 		.attr("id", "scatterAxesSvg")
 		.attr("width", svgWidth)
-		.attr("height", 50);
+		.attr("height", 45);
 
 	scatterIndexInfo.forEach( (index) => {
 		index.scale = d3.scaleLinear()
@@ -67,7 +67,7 @@ function setUpAxes(){
 		let middleX = (range[0] + range[1])/2;
 
 		axesSvg.append("g")
-			.attr("transform", "translate(0, 30)")
+			.attr("transform", "translate(0, 25)")
 			.call(index.axis)
 			.append("text")
 			.attr("class", "label")
