@@ -2,23 +2,28 @@
 let scatterIndexInfo = [
 	{
 		name: "Cost of Living Index",
-		shortName: "Cost. Living"
+		shortName: "Cost. Living",
+		color: "yellow"
 	},
 	{
 		name: "Rent Index",
-		shortName: "Rent"
+		shortName: "Rent",
+		color: "red"
 	},
 	{
 		name: "Groceries Index",
-		shortName: "Groceries"
+		shortName: "Groceries",
+		color: "blue"
 	},
 	{
 		name: "Restaurant Price Index",
-		shortName: "Restaurant"
+		shortName: "Restaurant",
+		color: "green"
 	},
 	{
 		name: "Local Purchasing Power Index",
-		shortName: "Purch. Power"
+		shortName: "Purch. Power",
+		color: "purple"
 	},
 ];
 
@@ -69,7 +74,6 @@ function setUpAxes(){
 			.attr("transform", "translate(0, 25)")
 			.call(index.axis)
 			.append("text")
-			.attr("class", "label")
 			.attr("x", middleX)
 			.attr("dy", -8)
 			.attr("fill", "black")
@@ -90,6 +94,20 @@ function onCitySelected_ScatterPlot(event, cityData)
 		.attr("width", svgWidth)
 		.attr("height", 20);
 
+	svg.append("text")
+		.style("text-anchor", "end")
+		.attr("x", bandScale("City")+bandScale.bandwidth())
+		.attr("y", 15)
+		.attr("fill", "black")
+		.text(cityData.City);
+	
+	scatterIndexInfo.forEach(function (index) {
+		svg.append("circle")
+			.attr("r", 5)
+			.attr("fill", index.color)
+			.attr("cx", index.scale(cityData[index.name]))
+			.attr("cy", 10);
+	});
 }
 
 function onCityDeselected_ScatterPlot(event, cityData) 
