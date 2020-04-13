@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="map.css">
 	<link rel="stylesheet" href="filters.css">
 	<link rel="stylesheet" href="barchart.css">
+	<link rel="stylesheet" href="scatterPlot.css">
 </head>
 <body>
 	<div id="outerContainer">
@@ -34,36 +35,8 @@
 				<svg id="barchart"></svg>
 			</div>
 			<div id="scatterContainer">
-				<!-- <p>scatter plot goes here</p> -->
-				<div class="scatter-column" id="selected-cities">
-					<p>Selected Cities</p>
-				</div>
-				<div class="scatter-column" id="cost-of-living">
-					<p>Cost Of Living</p>
-				</div>
-				<div class="scatter-column" id="rent">
-					<p>Rent</p>
-				</div>
-				<div class="scatter-column" id="groceries">
-					<p>Groceries</p>
-				</div>
-				<div class="scatter-column" id="restaurants">
-					<p>Restaurants</p>
-				</div>
-				<div class="scatter-column" id="purchasing-power">
-					<p>Purch. Power</p>
-				</div>
-				<div id="scale">
-					<svg id="axis0"></svg>
-					<svg id="axis"></svg>
-					<svg id="axis"></svg>
-					<svg id="axis"></svg>
-					<svg id="axis"></svg>
-					<svg id="axis"></svg>
-				</div>
-				<div class="scatter-plot" id="plot">
-					<!-- Here is where d3 and js create the other html elements -->
-				</div>
+				<svg id="scatterAxesSvg"></svg>
+				<div id="scatterCitiesContainer"></div>
 			</div>
 		</div>
 	</div>

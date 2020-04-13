@@ -1,0 +1,45 @@
+
+.axis-label{
+	fill: black;
+}
+
+.city-label{
+	fill: black;
+}
+
+.scatter-circle{
+	r: 5;
+}
+
+.scatterCityRow{
+	border-radius: 5px;
+}
+
+.scatter-row-hovered{
+	background-color: hsla(202, 70%, 85%, 1);
+}
+
+
+/* SCROLL */
+
+
+#scatterCitiesContainer{
+	height: 245px;
+	overflow-y: auto;
+}
+
+#scatterCitiesContainer::-webkit-scrollbar-track
+{
+	background-color: hsla(202, 70%, 80%, 1);
+}
+
+#scatterCitiesContainer::-webkit-scrollbar
+{
+	width: 5px;
+	background-color: gray;
+}
+
+#scatterCitiesContainer::-webkit-scrollbar-thumb
+{
+	background-color: gray;
+}
