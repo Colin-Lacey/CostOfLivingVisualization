@@ -34,16 +34,16 @@ let svgHeight = 45;
 function initializeScatterPlot(){
 
 	bandScale = d3.scaleBand()
-		.domain([ "City",
+		.domain([
 			"Cost of Living Index",
 			"Rent Index",
 			"Groceries Index",
 			"Restaurant Price Index",
 			"Local Purchasing Power Index"
 		])
-		.range([0, svgWidth])
+		.range([90, svgWidth])
 		.paddingInner(0.15)
-		.paddingOuter(0.1);
+		.paddingOuter(0.05);
 	
 	setUpAxes();
 
@@ -106,7 +106,7 @@ function onCitySelected_ScatterPlot(event, cityData)
 	svg.append("text")
 		.classed("city-label", true)
 		.style("text-anchor", "end")
-		.attr("x", bandScale("City")+bandScale.bandwidth())
+		.attr("x", bandScale("Cost of Living Index") - 10)
 		.attr("y", 15)
 		.text(cityData.City);
 	
