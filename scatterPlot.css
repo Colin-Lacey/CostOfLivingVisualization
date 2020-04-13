@@ -1,0 +1,19 @@
+#scatterContainer{
+	overflow-y: scroll;
+}
+
+#scatterContainer::-webkit-scrollbar-track
+{
+	background-color: hsla(202, 70%, 80%, 1);
+}
+
+#scatterContainer::-webkit-scrollbar
+{
+	width: 5px;
+	background-color: gray;
+}
+
+#scatterContainer::-webkit-scrollbar-thumb
+{
+	background-color: gray;
+}

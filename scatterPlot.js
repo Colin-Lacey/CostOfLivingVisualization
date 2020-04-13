@@ -28,7 +28,7 @@ let scatterIndexInfo = [
 ];
 
 let bandScale;
-let svgWidth = 790;
+let svgWidth = 780;
 
 function initializeScatterPlot(){
 
