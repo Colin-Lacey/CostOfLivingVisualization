@@ -39,9 +39,6 @@ function initializeBarChart() {
 }
 
 function onMouseOverCity_BarChart(event, cityData) {
-	console.log("Bar chart: moused over:");
-	console.log(cityData);
-
 	$("#cityName").html("<b>"+cityData.City+"</b>");
 
 	// following code modified from https://bl.ocks.org/alex-rind/0db75664782bd4ecdcbc93787ed07597
@@ -96,8 +93,6 @@ function onMouseOverCity_BarChart(event, cityData) {
 
 
 function onMouseOutOfCity_BarChart(event, cityData) {
-	console.log("Bar chart: mouse out of:");
-	console.log(cityData);
 
 	let svg = d3.select("#barchart");
 
