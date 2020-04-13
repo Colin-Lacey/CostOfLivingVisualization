@@ -2,28 +2,28 @@
 let scatterIndexInfo = [
 	{
 		name: "Cost of Living Index",
-		shortName: "Cost. Living",
-		color: "yellow"
+		shortName: "Cost Living",
+		color: "#e41a1c"
 	},
 	{
 		name: "Rent Index",
 		shortName: "Rent",
-		color: "red"
+		color: "#377eb8"
 	},
 	{
 		name: "Groceries Index",
 		shortName: "Groceries",
-		color: "blue"
+		color: "#4daf4a"
 	},
 	{
 		name: "Restaurant Price Index",
-		shortName: "Restaurant",
-		color: "green"
+		shortName: "Restaurants",
+		color: "#984ea3"
 	},
 	{
 		name: "Local Purchasing Power Index",
-		shortName: "Purch. Power",
-		color: "purple"
+		shortName: "Purchasing Power",
+		color: "#ff7f00"
 	},
 ];
 
@@ -72,10 +72,11 @@ function setUpAxes(){
 		axesSvg.append("g")
 			.attr("transform", "translate(0, 25)")
 			.call(index.axis)
+			.classed("axis", true)
 			.append("text")
+			.classed("axis-label", true)
 			.attr("x", middleX)
-			.attr("dy", -8)
-			.attr("fill", "black")
+			.attr("y", -8)
 			.style("text-anchor", "middle")
 			.text(index.shortName);
 	});
@@ -99,6 +100,8 @@ function onCitySelected_ScatterPlot(event, cityData)
 		.attr("y", 15)
 		.attr("fill", "black")
 		.text(cityData.City);
+	
+	
 	
 	scatterIndexInfo.forEach(function (index) {
 		svg.append("circle")
