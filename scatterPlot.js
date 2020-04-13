@@ -72,7 +72,6 @@ function setUpAxes(){
 		axesSvg.append("g")
 			.attr("transform", "translate(0, 25)")
 			.call(index.axis)
-			.classed("axis", true)
 			.append("text")
 			.classed("axis-label", true)
 			.attr("x", middleX)
@@ -95,17 +94,15 @@ function onCitySelected_ScatterPlot(event, cityData)
 		.attr("height", 20);
 
 	svg.append("text")
+		.classed("city-label", true)
 		.style("text-anchor", "end")
 		.attr("x", bandScale("City")+bandScale.bandwidth())
 		.attr("y", 15)
-		.attr("fill", "black")
 		.text(cityData.City);
-	
-	
 	
 	scatterIndexInfo.forEach(function (index) {
 		svg.append("circle")
-			.attr("r", 5)
+			.classed("scatter-circle", true)
 			.attr("fill", index.color)
 			.attr("cx", index.scale(cityData[index.name]))
 			.attr("cy", 10);

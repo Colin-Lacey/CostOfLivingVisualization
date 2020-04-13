@@ -3,6 +3,14 @@
 	fill: black;
 }
 
+.city-label{
+	fill: black;
+}
+
+.scatter-circle{
+	r: 5;
+}
+
 
 /* SCROLL */
 
