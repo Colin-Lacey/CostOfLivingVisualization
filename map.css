@@ -58,7 +58,7 @@ select{
 }
 
 .mouseover.city-circle{
-	stroke: grey;
+	stroke: black;
 	stroke-width: var(--selected-border-width);
 	r: var(--selected-radius);
 }

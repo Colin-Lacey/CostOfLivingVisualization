@@ -117,7 +117,9 @@ function refreshPlottedCities(){
 		.attr("cy", function(d){
 			let coords = mapProjection([d.lng, d.lat]);
 			return coords[1];
-		});
+		})
+		.attr('stroke','black')
+		.attr('stroke-width','0.2px');
 
 		cityUpdateSelection.exit()
 		.remove();
